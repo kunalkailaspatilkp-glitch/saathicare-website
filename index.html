@@ -221,8 +221,8 @@
               <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1637059824899-a441006a6875?auto=format&fit=crop&w=120&q=80" alt="Indian family member">
             </div>
             <div>
-              <p class="font-semibold text-stone-800 text-sm">450+ Families Across 6 Cities</p>
-              <p>Rated 4.9/5 by children in Bengaluru, Mumbai, USA &amp; UK</p>
+              <p class="font-semibold text-stone-800 text-sm">Illustrative example — SaathiCare is currently in prototype stage</p>
+              <p class="italic">Figures shown throughout this page are for demonstration, not actual customer data</p>
             </div>
             <div class="h-6 w-px bg-stone-300 hidden md:block"></div>
             <div class="flex items-center gap-1.5 text-emerald-700 font-semibold">
@@ -497,168 +497,155 @@
     </div>
   </section>
 
-  <!-- INTERACTIVE LIVE REMOTE DASHBOARD / WHATSAPP SIMULATOR -->
+  <!-- INTERACTIVE 3-ROLE FUNCTIONAL PROTOTYPE DEMO -->
   <section id="live-dashboard" class="py-20 bg-warm-subtle border-b border-stone-200/60">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
+
       <div class="max-w-3xl mx-auto text-center space-y-4 mb-14">
         <span class="text-xs font-bold uppercase tracking-wider text-teal-800 bg-teal-100 px-3 py-1 rounded-full border border-teal-200">
           The Trust Technology Stack
         </span>
         <h2 class="text-3xl sm:text-4xl font-serif-heading font-bold text-stone-900">
-          Experience the Remote Care Dashboard
+          See the Trust Loop Work, Live
         </h2>
         <p class="text-stone-600 text-base sm:text-lg">
-          Click the scenarios below to see the exact WhatsApp logs, GPS timestamps, vitals checks, and photo updates you will receive after every visit.
+          This is a working walkthrough, not a screenshot. Switch roles below and click through a real visit — from caregiver check-in to the buyer's verified log.
         </p>
 
-        <!-- Scenario Selector Buttons -->
+        <!-- Role Selector Buttons -->
         <div class="flex flex-wrap justify-center gap-3 pt-4">
-          <button class="dashboard-tab px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all bg-amber-600 text-white shadow-md flex items-center gap-2" data-scenario="companionship">
-            <i data-lucide="coffee" class="w-4 h-4"></i>
-            <span>Morning Chai &amp; Walk</span>
+          <button class="demo-tab px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all bg-amber-600 text-white shadow-md flex items-center gap-2" data-role="buyer">
+            <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+            <span>Priya — Buyer</span>
           </button>
-          <button class="dashboard-tab px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all bg-white text-stone-700 hover:bg-amber-50 border border-stone-200 flex items-center gap-2" data-scenario="doctor">
-            <i data-lucide="stethoscope" class="w-4 h-4"></i>
-            <span>Doctor Appointment Escort</span>
+          <button class="demo-tab px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all bg-white text-stone-700 hover:bg-amber-50 border border-stone-200 flex items-center gap-2" data-role="caregiver">
+            <i data-lucide="clipboard-check" class="w-4 h-4"></i>
+            <span>Meena — Caregiver</span>
           </button>
-          <button class="dashboard-tab px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all bg-white text-stone-700 hover:bg-amber-50 border border-stone-200 flex items-center gap-2" data-scenario="errands">
-            <i data-lucide="smartphone" class="w-4 h-4"></i>
-            <span>Pension &amp; Tech Help</span>
+          <button class="demo-tab px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all bg-white text-stone-700 hover:bg-amber-50 border border-stone-200 flex items-center gap-2" data-role="parent">
+            <i data-lucide="smile" class="w-4 h-4"></i>
+            <span>Amma — Parent</span>
           </button>
         </div>
       </div>
 
-      <!-- Smartphone / Dashboard Interactive Preview Container -->
+      <!-- Interactive Demo Frame -->
       <div class="max-w-4xl mx-auto">
-        <div id="phone-preview-card" class="bg-white rounded-3xl shadow-2xl border-4 border-stone-800 overflow-hidden transition-all duration-300">
-          
-          <!-- Smartphone Top Bar / Header -->
-          <div class="bg-stone-900 text-white px-6 py-4 flex items-center justify-between border-b border-stone-800">
-            <div class="flex items-center gap-3">
-              <div class="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></div>
-              <div>
-                <div class="text-xs font-semibold tracking-wide text-stone-300">SAATHICARE PARENT PORTAL</div>
-                <div class="text-sm font-bold text-white flex items-center gap-2">
-                  <span id="dash-title">Morning Chai, Walk &amp; Medication Check</span>
+        <div class="bg-white rounded-3xl shadow-2xl border-4 border-stone-800 overflow-hidden">
+
+          <!-- BUYER PANEL -->
+          <div id="demo-panel-buyer" class="demo-panel">
+            <div class="bg-stone-900 text-white px-6 py-4 flex items-center justify-between border-b border-stone-800">
+              <div class="flex items-center gap-3">
+                <div class="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></div>
+                <div>
+                  <div class="text-xs font-semibold tracking-wide text-stone-300">BUYER DASHBOARD</div>
+                  <div class="text-sm font-bold text-white">Priya's remote view</div>
                 </div>
               </div>
+              <span class="bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[11px] font-bold px-2.5 py-0.5 rounded-full">Standard Plan</span>
             </div>
-            <div class="text-right">
-              <span id="dash-badge" class="bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[11px] font-bold px-2.5 py-0.5 rounded-full">
-                Routine Daily Visit
-              </span>
-              <div id="dash-time" class="text-[11px] text-stone-400 mt-1">Today, 10:15 AM</div>
+            <div class="p-6 sm:p-8 grid md:grid-cols-12 gap-6 bg-stone-50/50">
+              <div class="md:col-span-7 space-y-4">
+                <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm flex items-center justify-between">
+                  <div>
+                    <div class="text-xs font-bold text-stone-500 uppercase tracking-wider">Today's Next Visit</div>
+                    <div id="demo-next-time" class="text-lg font-bold text-stone-900 mt-1">4:00 PM</div>
+                    <div id="demo-next-task" class="text-xs text-stone-600">Doctor escort — Dr. Rao's clinic</div>
+                  </div>
+                  <span id="demo-next-status" class="text-xs bg-amber-100 text-amber-800 font-bold px-2.5 py-1 rounded-full shrink-0">Upcoming</span>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm">
+                  <div class="text-xs font-bold text-stone-500 uppercase tracking-wider mb-3">Visit Log</div>
+                  <div id="demo-timeline" class="space-y-3"></div>
+                </div>
+                <button id="demo-adhoc-btn" class="w-full bg-white hover:bg-amber-50 text-terracotta-700 font-semibold text-xs px-4 py-2.5 rounded-xl border border-terracotta-200 transition-colors">
+                  + Request ad-hoc visit (₹399)
+                </button>
+              </div>
+              <div class="md:col-span-5">
+                <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm h-full">
+                  <div class="text-xs font-bold text-stone-500 uppercase tracking-wider mb-3">Notifications</div>
+                  <div id="demo-feed" class="space-y-3 text-xs"></div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <!-- Main Interactive Body -->
-          <div class="p-6 sm:p-8 grid md:grid-cols-12 gap-6 bg-stone-50/50">
-            
-            <!-- Left Column: Verification & Log Summary -->
-            <div class="md:col-span-7 space-y-5">
-              
-              <!-- Assigned Caregiver Bar -->
-              <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm flex items-center justify-between">
+          <!-- CAREGIVER PANEL -->
+          <div id="demo-panel-caregiver" class="demo-panel hidden">
+            <div class="bg-stone-900 text-white px-6 py-4 flex items-center justify-between border-b border-stone-800">
+              <div class="flex items-center gap-3">
+                <div class="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></div>
+                <div>
+                  <div class="text-xs font-semibold tracking-wide text-stone-300">CAREGIVER CHECK-IN</div>
+                  <div class="text-sm font-bold text-white">Meena's assignment</div>
+                </div>
+              </div>
+              <span class="bg-teal-500/20 text-teal-300 border border-teal-500/30 text-[11px] font-bold px-2.5 py-0.5 rounded-full">Shalini Rao • Jubilee Hills</span>
+            </div>
+            <div class="p-6 sm:p-8 space-y-4 bg-stone-50/50 min-h-[320px]">
+              <div id="demo-step-arrive">
+                <button id="demo-arrive-btn" class="bg-terracotta-700 hover:bg-terracotta-800 text-white text-xs font-bold px-5 py-3 rounded-xl shadow transition-colors">
+                  📍 Mark arrived at home
+                </button>
+              </div>
+              <div id="demo-step-checklist" class="hidden space-y-3">
+                <label class="flex items-center gap-2 text-xs text-stone-700 bg-white p-3 rounded-xl border border-stone-200">
+                  <input type="checkbox" class="demo-chk w-4 h-4 accent-teal-700"> Task completed as scheduled
+                </label>
+                <label class="flex items-center gap-2 text-xs text-stone-700 bg-white p-3 rounded-xl border border-stone-200">
+                  <input type="checkbox" class="demo-chk w-4 h-4 accent-teal-700"> Amma is safe and comfortable
+                </label>
+                <label class="flex items-center gap-2 text-xs text-stone-700 bg-white p-3 rounded-xl border border-stone-200">
+                  <input type="checkbox" class="demo-chk w-4 h-4 accent-teal-700"> No concerns to escalate
+                </label>
                 <div class="flex items-center gap-3">
-                  <div class="w-11 h-11 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-sm">
-                    AV
-                  </div>
-                  <div>
-                    <h4 id="dash-saathi-name" class="text-sm font-bold text-stone-900">Aarti Verma (Verified Companion)</h4>
-                    <p id="dash-saathi-rating" class="text-xs text-amber-700 font-semibold">4.9 ★ (140+ visits)</p>
-                  </div>
+                  <button id="demo-capture-btn" class="bg-white border border-dashed border-stone-400 text-stone-600 text-xs font-semibold px-4 py-2 rounded-xl">📷 Capture visit photo</button>
+                  <div id="demo-photo-preview" class="hidden w-10 h-10 rounded-xl bg-gradient-to-br from-teal-100 to-amber-100 items-center justify-center text-lg">📷</div>
                 </div>
-                <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
-                  <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-600"></i> KYC Verified
-                </span>
+                <textarea id="demo-note" class="w-full text-xs border border-stone-200 rounded-xl p-3" rows="3" placeholder="Add a short note for the family..."></textarea>
+                <button id="demo-submit-btn" disabled class="bg-teal-700 disabled:bg-stone-300 text-white text-xs font-bold px-5 py-3 rounded-xl shadow transition-colors">Submit visit report</button>
               </div>
-
-              <!-- GPS Check-In Timestamp -->
-              <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm space-y-2">
-                <div class="text-xs font-bold text-stone-500 uppercase tracking-wider">Arrival &amp; Vitals Verification</div>
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
-                  <div class="flex items-center gap-1.5 text-stone-700">
-                    <i data-lucide="map-pin" class="w-4 h-4 text-terracotta-600"></i>
-                    <span id="dash-checkin" class="font-medium">09:55 AM (GPS Verified: Model Town, Pune)</span>
-                  </div>
-                  <div class="flex items-center gap-1.5 font-bold text-teal-800 bg-teal-50 px-2 py-0.5 rounded">
-                    <i data-lucide="activity" class="w-3.5 h-3.5 text-teal-600"></i>
-                    <span id="dash-vitals">BP: 122/80 mmHg • Pulse: 72 bpm</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Caregiver Visit Log -->
-              <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm space-y-2">
-                <div class="text-xs font-bold text-stone-500 uppercase tracking-wider">Companion's Visit Observations</div>
-                <p id="dash-summary" class="text-xs sm:text-sm text-stone-700 leading-relaxed">
-                  Uncle was in good spirits. We took a 20-minute slow walk in the garden, enjoyed cardamom chai, and checked the weekly pill organizer. Blood pressure was normal. He also shared stories of his college days in Roorkee!
-                </p>
-              </div>
-
-              <!-- Checklist of Actions -->
-              <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm space-y-2">
-                <div class="text-xs font-bold text-stone-500 uppercase tracking-wider">Completed Activities</div>
-                <ul id="dash-actions-list" class="space-y-1.5">
-                  <li class="flex items-start text-xs text-stone-700 gap-1.5">
-                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5"></i>
-                    <span>20-min gentle assisted park walk</span>
-                  </li>
-                  <li class="flex items-start text-xs text-stone-700 gap-1.5">
-                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5"></i>
-                    <span>Morning medication adherence confirmed</span>
-                  </li>
-                  <li class="flex items-start text-xs text-stone-700 gap-1.5">
-                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5"></i>
-                    <span>Cardamom chai &amp; 35 min heartfelt conversation</span>
-                  </li>
-                  <li class="flex items-start text-xs text-stone-700 gap-1.5">
-                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5"></i>
-                    <span>Fresh milk &amp; fruit picked up from society booth</span>
-                  </li>
-                </ul>
-              </div>
-
-            </div>
-
-            <!-- Right Column: Live Photo Proof -->
-            <div class="md:col-span-5 space-y-4">
-              <div class="bg-white p-3 rounded-2xl border border-stone-200 shadow-sm">
-                <div class="text-xs font-bold text-stone-600 mb-2 flex items-center justify-between">
-                  <span class="flex items-center gap-1.5">
-                    <i data-lucide="camera" class="w-4 h-4 text-amber-600"></i>
-                    <span>Visit Photo Verification</span>
-                  </span>
-                  <span class="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-semibold">Geo-Tagged</span>
-                </div>
-                
-                <div class="rounded-xl overflow-hidden aspect-[4/3] bg-stone-100 relative group">
-                  <img id="dash-photo" src="https://images.unsplash.com/photo-1774437892287-6bff0fc8980a?auto=format&fit=crop&w=600&q=80" alt="Visit Photo Log" class="w-full h-full object-cover">
-                  <div class="absolute inset-0 bg-gradient-to-t from-stone-900/70 via-transparent to-transparent opacity-80"></div>
-                  <div class="absolute bottom-2 left-2 right-2 text-white text-[11px] font-medium leading-tight">
-                    <p id="dash-photo-caption">Uncle smiling on the veranda during morning cardamom chai</p>
-                  </div>
-                </div>
-
-                <div class="mt-3 pt-3 border-t border-stone-100 text-center">
-                  <button class="open-booking-modal w-full bg-terracotta-700 hover:bg-terracotta-800 text-white text-xs font-bold py-2.5 rounded-xl shadow transition-colors flex items-center justify-center gap-2">
-                    <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
-                    <span>Schedule Free Tea Meet for Your Parents</span>
-                  </button>
-                </div>
-              </div>
-
-              <div class="text-center">
-                <span class="text-[11px] text-stone-500">
-                  📱 Sent automatically to your WhatsApp family group within 15 minutes of visit conclusion.
-                </span>
+              <div id="demo-step-done" class="hidden bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold p-4 rounded-xl">
+                ✓ Visit report submitted — synced to Priya's dashboard.
               </div>
             </div>
+          </div>
 
+          <!-- ELDERLY PARENT PANEL -->
+          <div id="demo-panel-parent" class="demo-panel hidden">
+            <div class="bg-stone-900 text-white px-6 py-4 flex items-center gap-3 border-b border-stone-800">
+              <div class="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></div>
+              <div class="text-sm font-bold text-white">Amma's screen — kept deliberately simple</div>
+            </div>
+            <div class="p-8 sm:p-10 text-center space-y-5 bg-stone-50/50 max-w-sm mx-auto min-h-[320px]">
+              <div>
+                <div class="text-sm text-stone-500">Good afternoon</div>
+                <div class="text-2xl font-serif-heading font-bold text-stone-900">Shalini Amma</div>
+              </div>
+              <div class="bg-white rounded-2xl border border-stone-200 shadow-sm p-6 space-y-2">
+                <div class="w-14 h-14 mx-auto rounded-full bg-amber-100 text-amber-800 font-bold flex items-center justify-center text-lg">M</div>
+                <div class="text-sm font-bold text-stone-900">Meena is visiting today</div>
+                <div class="text-xs text-stone-600">4:00 PM — for your doctor visit</div>
+                <button class="mt-2 bg-teal-700 text-white text-xs font-bold px-5 py-2.5 rounded-full">📞 Call coordinator</button>
+              </div>
+              <div class="grid grid-cols-2 gap-3">
+                <button id="demo-parent-good" class="bg-white border-2 border-stone-200 hover:border-teal-600 rounded-2xl p-4 text-xs sm:text-sm font-bold flex flex-col items-center gap-1 transition-colors">
+                  <span class="text-2xl">🙂</span> I'm doing well
+                </button>
+                <button id="demo-parent-help" class="bg-white border-2 border-stone-200 hover:border-terracotta-600 rounded-2xl p-4 text-xs sm:text-sm font-bold flex flex-col items-center gap-1 transition-colors">
+                  <span class="text-2xl">🤍</span> I need something
+                </button>
+              </div>
+              <div id="demo-parent-confirm" class="hidden bg-teal-50 border border-teal-200 text-teal-800 text-xs font-semibold p-3 rounded-xl"></div>
+            </div>
           </div>
 
         </div>
+        <p class="text-center text-[11px] text-stone-500 mt-4">
+          Tip: try Meena's check-in first, then switch to Priya — the visit log updates live.
+        </p>
       </div>
 
     </div>
@@ -1029,6 +1016,7 @@
         <!-- Story 1: Seattle to Pune -->
         <div class="bg-white rounded-2xl p-7 border border-stone-200/80 shadow-md space-y-4 flex flex-col justify-between">
           <div class="space-y-3">
+            <div class="text-[10px] font-semibold uppercase tracking-wide text-stone-400">Illustrative scenario, not an actual customer</div>
             <div class="flex text-amber-500 text-xs">
               ★★★★★
             </div>
@@ -1050,6 +1038,7 @@
         <!-- Story 2: Bengaluru to Lucknow -->
         <div class="bg-white rounded-2xl p-7 border border-stone-200/80 shadow-md space-y-4 flex flex-col justify-between">
           <div class="space-y-3">
+            <div class="text-[10px] font-semibold uppercase tracking-wide text-stone-400">Illustrative scenario, not an actual customer</div>
             <div class="flex text-amber-500 text-xs">
               ★★★★★
             </div>
@@ -1071,6 +1060,7 @@
         <!-- Story 3: London to Jaipur -->
         <div class="bg-white rounded-2xl p-7 border border-stone-200/80 shadow-md space-y-4 flex flex-col justify-between">
           <div class="space-y-3">
+            <div class="text-[10px] font-semibold uppercase tracking-wide text-stone-400">Illustrative scenario, not an actual customer</div>
             <div class="flex text-amber-500 text-xs">
               ★★★★★
             </div>

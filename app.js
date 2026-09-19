@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   initCurrencyToggle();
-  initDashboardSimulator();
+  initInteractiveDemo();
   initBookingModal();
   initFaqAccordion();
   initMobileMenu();
@@ -97,79 +97,35 @@ function initCurrencyToggle() {
 }
 
 /* ==========================================================================
-   2. Live WhatsApp & Remote Care Dashboard Simulator
+   2. Interactive 3-Role Functional Prototype Demo
+   (Buyer / Caregiver / Elderly Parent — a real, stateful walkthrough,
+   not a scripted scenario. Completing the caregiver check-in updates
+   the buyer's visit log and notification feed live.)
    ========================================================================== */
-const simulatedScenarios = {
-  companionship: {
-    badge: "Routine Daily Visit",
-    time: "Today, 10:15 AM",
-    title: "Morning Chai, Walk & Medication Check",
-    saathiName: "Aarti Verma (Verified Companion)",
-    saathiRating: "4.9 ★ (140+ visits)",
-    checkInTime: "09:55 AM (GPS Verified: Model Town, Pune)",
-    statusText: "Completed (1 hr 15 mins)",
-    vitalText: "BP: 122/80 mmHg • Pulse: 72 bpm",
-    logSummary: "Uncle was in good spirits. We took a 20-minute slow walk in the garden, enjoyed cardamom chai, and checked the weekly pill organizer. Blood pressure was normal. He also shared stories of his college days in Roorkee!",
-    photoCaption: "Uncle smiling on the veranda during morning cardamom chai",
-    photoUrl: "https://images.unsplash.com/photo-1774437892287-6bff0fc8980a?auto=format&fit=crop&w=600&q=80",
-    actionsCompleted: [
-      "20-min gentle assisted park walk",
-      "Morning medication adherence confirmed",
-      "Cardamom chai & 35 min heartfelt conversation",
-      "Fresh milk & fruit picked up from society booth"
-    ]
+const demoState = {
+  visit: {
+    time: "4:00 PM",
+    task: "Doctor escort — Dr. Rao's clinic",
+    status: "upcoming", // upcoming | completed
+    note: ""
   },
-  doctor: {
-    badge: "Medical Escort & Notes",
-    time: "Yesterday, 3:45 PM",
-    title: "Cardiologist Follow-up at Apollo Clinic",
-    saathiName: "Rajesh Kumar (Senior Escort Saathi)",
-    saathiRating: "5.0 ★ (210+ visits)",
-    checkInTime: "02:40 PM (Uber Escort: Gomti Nagar, Lucknow)",
-    statusText: "Completed (2 hrs 30 mins)",
-    vitalText: "Doctor: Dr. A.K. Singhal • Token #18",
-    logSummary: "Escorted Aunty safely via cab. Waited in clinic, assisted onto examination chair. Dr. Singhal reviewed ECG: heart rhythm stable. Dosages unchanged. Next routine follow-up recommended after 90 days. All new medicines collected from pharmacy.",
-    photoCaption: "Aunty comfortably resting after clinic visit with updated prescription notes",
-    photoUrl: "https://images.unsplash.com/photo-1768718254616-42746ca09818?auto=format&fit=crop&w=600&q=80",
-    actionsCompleted: [
-      "Door-to-door escort via air-conditioned cab",
-      "Waited through appointment & recorded doctor notes",
-      "Purchased 30-day prescription refills with bill upload",
-      "Safely settled Aunty back home with water & tea"
-    ]
-  },
-  errands: {
-    badge: "Errand & Tech Assistance",
-    time: "Tuesday, 11:30 AM",
-    title: "Pension Life Certificate & Video Call Setup",
-    saathiName: "Neha Joshi (Tech-Friendly Saathi)",
-    saathiRating: "4.9 ★ (85+ visits)",
-    checkInTime: "11:00 AM (Home Visit: Sector 34, Chandigarh)",
-    statusText: "Completed (1 hr 30 mins)",
-    vitalText: "Jeevan Pramaan Token: #JP-882941",
-    logSummary: "Successfully completed digital Jeevan Pramaan submission on Papa's smartphone using facial recognition. Set up WhatsApp shortcut for calling his grandson in Toronto. Replaced dead TV remote batteries and filed electricity bill receipt.",
-    photoCaption: "Papa smiling after successful Jeevan Pramaan submission and WhatsApp video call",
-    photoUrl: "https://images.unsplash.com/photo-1774438359980-8cd8dfa0558b?auto=format&fit=crop&w=600&q=80",
-    actionsCompleted: [
-      "Jeevan Pramaan biometric life certificate completed",
-      "Electricity and water bills paid digitally",
-      "High-speed WhatsApp test video call to USA conducted",
-      "Smartphone cache cleared & icons organized"
-    ]
-  }
+  feed: [
+    { text: "Meena confirmed today's visit for Shalini Amma.", time: "9:12 AM" }
+  ]
 };
 
-function initDashboardSimulator() {
-  const tabs = document.querySelectorAll('.dashboard-tab');
-  if (!tabs.length) return;
+function initInteractiveDemo() {
+  const tabs = document.querySelectorAll('.demo-tab');
+  const panels = {
+    buyer: document.getElementById('demo-panel-buyer'),
+    caregiver: document.getElementById('demo-panel-caregiver'),
+    parent: document.getElementById('demo-panel-parent')
+  };
+  if (!tabs.length || !panels.buyer) return;
 
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      const scenarioKey = tab.getAttribute('data-scenario');
-      const data = simulatedScenarios[scenarioKey];
-      if (!data) return;
-
-      // Toggle tab styling
+      const role = tab.getAttribute('data-role');
       tabs.forEach(t => {
         t.classList.remove('bg-amber-600', 'text-white', 'shadow-md');
         t.classList.add('bg-white', 'text-stone-700', 'hover:bg-amber-50');
@@ -177,44 +133,145 @@ function initDashboardSimulator() {
       tab.classList.add('bg-amber-600', 'text-white', 'shadow-md');
       tab.classList.remove('bg-white', 'text-stone-700', 'hover:bg-amber-50');
 
-      // Update Phone Screen Elements
-      const badgeEl = document.getElementById('dash-badge');
-      const timeEl = document.getElementById('dash-time');
-      const titleEl = document.getElementById('dash-title');
-      const saathiNameEl = document.getElementById('dash-saathi-name');
-      const saathiRatingEl = document.getElementById('dash-saathi-rating');
-      const checkInEl = document.getElementById('dash-checkin');
-      const vitalsEl = document.getElementById('dash-vitals');
-      const summaryEl = document.getElementById('dash-summary');
-      const photoEl = document.getElementById('dash-photo');
-      const photoCaptionEl = document.getElementById('dash-photo-caption');
-      const actionsListEl = document.getElementById('dash-actions-list');
-
-      if (badgeEl) badgeEl.textContent = data.badge;
-      if (timeEl) timeEl.textContent = data.time;
-      if (titleEl) titleEl.textContent = data.title;
-      if (saathiNameEl) saathiNameEl.textContent = data.saathiName;
-      if (saathiRatingEl) saathiRatingEl.textContent = data.saathiRating;
-      if (checkInEl) checkInEl.textContent = data.checkInTime;
-      if (vitalsEl) vitalsEl.textContent = data.vitalText;
-      if (summaryEl) summaryEl.textContent = data.logSummary;
-      if (photoCaptionEl) photoCaptionEl.textContent = data.photoCaption;
-      if (photoEl) photoEl.src = data.photoUrl;
-
-      if (actionsListEl) {
-        actionsListEl.innerHTML = data.actionsCompleted
-          .map(item => `<li class="flex items-start text-xs text-stone-700 gap-1.5"><svg class="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>${item}</span></li>`)
-          .join('');
-      }
-
-      // Quick visual feedback
-      const previewCard = document.getElementById('phone-preview-card');
-      if (previewCard) {
-        previewCard.classList.add('opacity-75');
-        setTimeout(() => previewCard.classList.remove('opacity-75'), 150);
-      }
+      Object.values(panels).forEach(p => p.classList.add('hidden'));
+      panels[role].classList.remove('hidden');
     });
   });
+
+  renderBuyerDemo();
+
+  const adhocBtn = document.getElementById('demo-adhoc-btn');
+  if (adhocBtn) {
+    adhocBtn.addEventListener('click', () => {
+      pushDemoFeed('Ad-hoc visit requested — coordinator will confirm within the hour.');
+      adhocBtn.textContent = '✓ Request sent to coordinator';
+      adhocBtn.disabled = true;
+      adhocBtn.classList.add('opacity-60');
+    });
+  }
+
+  const arriveBtn = document.getElementById('demo-arrive-btn');
+  if (arriveBtn) {
+    arriveBtn.addEventListener('click', () => {
+      document.getElementById('demo-step-arrive').classList.add('hidden');
+      document.getElementById('demo-step-checklist').classList.remove('hidden');
+      pushDemoFeed("Meena has arrived for Shalini Amma's " + demoState.visit.task.toLowerCase() + ".");
+    });
+  }
+
+  const captureBtn = document.getElementById('demo-capture-btn');
+  if (captureBtn) {
+    captureBtn.addEventListener('click', () => {
+      const preview = document.getElementById('demo-photo-preview');
+      preview.classList.remove('hidden');
+      preview.classList.add('flex');
+      captureBtn.textContent = '✓ Photo captured';
+      checkDemoSubmit();
+    });
+  }
+
+  document.querySelectorAll('.demo-chk').forEach(chk => {
+    chk.addEventListener('change', checkDemoSubmit);
+  });
+
+  const submitBtn = document.getElementById('demo-submit-btn');
+  if (submitBtn) {
+    submitBtn.addEventListener('click', () => {
+      const noteEl = document.getElementById('demo-note');
+      demoState.visit.status = 'completed';
+      demoState.visit.note = (noteEl && noteEl.value.trim()) || 'Visit completed. All tasks done, Amma doing well.';
+      document.getElementById('demo-step-checklist').classList.add('hidden');
+      document.getElementById('demo-step-done').classList.remove('hidden');
+      pushDemoFeed('Visit completed — "' + demoState.visit.task + '" logged with photo and notes.');
+      renderBuyerDemo();
+    });
+  }
+
+  const goodBtn = document.getElementById('demo-parent-good');
+  const helpBtn = document.getElementById('demo-parent-help');
+  const confirmEl = document.getElementById('demo-parent-confirm');
+  if (goodBtn) {
+    goodBtn.addEventListener('click', () => {
+      confirmEl.textContent = "Sent to Priya: \"Amma says she's doing well today.\"";
+      confirmEl.classList.remove('hidden');
+      pushDemoFeed('Amma checked in: doing well today.');
+    });
+  }
+  if (helpBtn) {
+    helpBtn.addEventListener('click', () => {
+      confirmEl.textContent = 'Sent to Priya and Meena: Amma flagged she needs something.';
+      confirmEl.classList.remove('hidden');
+      pushDemoFeed('Amma flagged she needs something — coordinator notified.');
+    });
+  }
+}
+
+function checkDemoSubmit() {
+  const boxes = document.querySelectorAll('.demo-chk');
+  const allChecked = Array.from(boxes).every(b => b.checked);
+  const preview = document.getElementById('demo-photo-preview');
+  const photoTaken = preview && !preview.classList.contains('hidden');
+  const submitBtn = document.getElementById('demo-submit-btn');
+  if (submitBtn) submitBtn.disabled = !(allChecked && photoTaken);
+}
+
+function pushDemoFeed(text) {
+  const now = new Date();
+  const time = now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+  demoState.feed.push({ text, time });
+  renderBuyerDemo();
+}
+
+function renderBuyerDemo() {
+  const timeEl = document.getElementById('demo-next-time');
+  const taskEl = document.getElementById('demo-next-task');
+  const statusEl = document.getElementById('demo-next-status');
+  const timelineEl = document.getElementById('demo-timeline');
+  const feedEl = document.getElementById('demo-feed');
+  if (!timelineEl) return;
+
+  if (demoState.visit.status === 'upcoming') {
+    if (timeEl) timeEl.textContent = demoState.visit.time;
+    if (taskEl) taskEl.textContent = demoState.visit.task;
+    if (statusEl) {
+      statusEl.textContent = 'Upcoming';
+      statusEl.className = 'text-xs bg-amber-100 text-amber-800 font-bold px-2.5 py-1 rounded-full shrink-0';
+    }
+  } else {
+    if (timeEl) timeEl.textContent = '—';
+    if (taskEl) taskEl.textContent = 'No further visits today';
+    if (statusEl) {
+      statusEl.textContent = 'All done';
+      statusEl.className = 'text-xs bg-emerald-100 text-emerald-800 font-bold px-2.5 py-1 rounded-full shrink-0';
+    }
+  }
+
+  timelineEl.innerHTML = `
+    <div class="flex items-start gap-3">
+      <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-teal-100 to-amber-100 flex items-center justify-center text-sm shrink-0">
+        ${demoState.visit.status === 'completed' ? '📷' : '🕓'}
+      </div>
+      <div class="text-xs">
+        <div class="flex justify-between gap-2">
+          <span class="font-semibold text-stone-800">${demoState.visit.task}</span>
+          <span class="text-stone-400 shrink-0">${demoState.visit.time}</span>
+        </div>
+        <div class="text-stone-500 mt-0.5">${demoState.visit.note || 'Scheduled — Meena will check in on arrival.'}</div>
+      </div>
+    </div>
+  `;
+
+  if (feedEl) {
+    feedEl.innerHTML = demoState.feed.slice().reverse().map(f => `
+      <div class="flex gap-2 border-t border-stone-100 pt-2 first:border-0 first:pt-0">
+        <div class="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 shrink-0"></div>
+        <div>
+          <div class="text-stone-700">${f.text}</div>
+          <div class="text-stone-400 text-[10px]">${f.time}</div>
+        </div>
+      </div>
+    `).join('');
+  }
 }
 
 /* ==========================================================================

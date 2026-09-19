@@ -1,0 +1,145 @@
+/* SaathiCare - Modern Elder-Care Platform Stylesheet */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap');
+
+:root {
+  --primary: #c2410c; /* Warm Terracotta */
+  --primary-hover: #9a3412;
+  --primary-light: #ffedd5;
+  --teal-accent: #0f766e; /* Deep Healing Teal */
+  --teal-light: #ccfbf1;
+  --warm-bg: #fffbf5; /* Soft Warm Ivory */
+  --warm-card: #ffffff;
+  --text-main: #1c1917;
+  --text-muted: #57534e;
+  --border-subtle: #f5f0e8;
+  --border-accent: #fed7aa;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--warm-bg);
+  color: var(--text-main);
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+.font-serif-heading {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* Warm subtle gradient backgrounds */
+.bg-warm-hero {
+  background: radial-gradient(120% 120% at 50% -20%, #ffedd5 0%, #fffbf5 60%, #fff7ed 100%);
+}
+
+.bg-warm-subtle {
+  background: linear-gradient(180deg, #fffbf5 0%, #fef3c7 50%, #fffbf5 100%);
+}
+
+.bg-teal-gradient {
+  background: linear-gradient(135deg, #0f766e 0%, #115e59 100%);
+}
+
+.bg-warm-card-glow {
+  background: #ffffff;
+  box-shadow: 0 10px 30px -10px rgba(194, 65, 12, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+}
+
+.bg-warm-card-glow:hover {
+  box-shadow: 0 20px 35px -10px rgba(194, 65, 12, 0.14), 0 8px 10px -4px rgba(0, 0, 0, 0.04);
+}
+
+/* Glassmorphism */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(254, 215, 170, 0.5);
+}
+
+.glass-nav {
+  background: rgba(255, 251, 245, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(231, 229, 228, 0.6);
+}
+
+/* Interactive phone preview mockup */
+.phone-mockup {
+  border: 8px solid #292524;
+  border-radius: 40px;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  background: #f8fafc;
+}
+
+.phone-notch {
+  width: 130px;
+  height: 20px;
+  background-color: #292524;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  margin: 0 auto;
+}
+
+/* Pulsing indicators */
+@keyframes softPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.75;
+  }
+}
+
+.pulse-live {
+  animation: softPulse 2s infinite ease-in-out;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #fdfaf6;
+}
+::-webkit-scrollbar-thumb {
+  background: #fed7aa;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #fb923c;
+}
+
+/* Subtle Indian Rangoli / Floral motif pattern */
+.bg-pattern-rangoli {
+  background-image: radial-gradient(#ea580c 0.75px, transparent 0.75px), radial-gradient(#0f766e 0.75px, #fffbf5 0.75px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+  opacity: 0.4;
+}
+
+/* Modal transitions */
+.modal-backdrop {
+  background-color: rgba(28, 25, 23, 0.65);
+  backdrop-filter: blur(4px);
+  transition: opacity 0.25s ease;
+}
+
+/* Trust badge float effect */
+.trust-badge-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.trust-badge-card:hover {
+  transform: translateY(-3px);
+}
+
+/* Currency switch active styling */
+.currency-btn.active {
+  background-color: #ffffff;
+  color: #c2410c;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-weight: 700;
+}

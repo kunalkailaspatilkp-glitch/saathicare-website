@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SaathiCare | Verified Elder-Care & Companionship for India's Migrant Families</title>
+  <meta name="description" content="Verified, compassionate companionship for elderly parents living alone in India. With real-time WhatsApp photo-logs, doctor escorts, errand help, and single-point accountability.">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            amber: {
+              50: '#fffbeb',
+              100: '#fef3c7',
+              600: '#d97706',
+              700: '#b45309',
+              800: '#92400e',
+              900: '#78350f',
+            },
+            terracotta: {
+              50: '#fff7ed',
+              100: '#ffedd5',
+              500: '#f97316',
+              600: '#ea580c',
+              700: '#c2410c',
+              800: '#9a3412',
+            },
+            sage: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              600: '#16a34a',
+              700: '#15803d',
+            },
+            teal: {
+              600: '#0d9488',
+              700: '#0f766e',
+              800: '#115e59',
+              900: '#134e4a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-[#fffbf5] text-stone-800 antialiased selection:bg-amber-100 selection:text-amber-900">
+
+  <!-- TOP BANNER FOR NRI / MIGRANT CHILDREN -->
+  <div class="bg-gradient-to-r from-terracotta-700 via-amber-700 to-teal-800 text-white text-xs sm:text-sm py-2 px-4">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span class="bg-white/20 text-white text-[11px] font-semibold px-2 py-0.5 rounded-full uppercase tracking-wider">NRI & Domestic Migrant Support</span>
+        <span>Now active in <strong>Pune, Lucknow, Jaipur, Chandigarh, Indore & Coimbatore</strong></span>
+      </div>
+      <div class="flex items-center gap-4 text-xs">
+        <span class="hidden sm:inline-block">🌍 24/7 WhatsApp Coordination for Global Time Zones</span>
+        <a href="#trial-section" class="underline font-semibold hover:text-amber-200">Try 1st Visit at ₹399 &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 glass-nav border-b border-stone-200/70 transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-terracotta-700 to-amber-500 flex items-center justify-center text-white shadow-md shadow-amber-900/10 group-hover:scale-105 transition-transform">
+          <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <span class="text-2xl font-bold tracking-tight text-stone-900 flex items-center gap-1.5">
+            SaathiCare <span class="text-xs font-normal text-terracotta-700 bg-terracotta-50 px-2 py-0.5 rounded-md border border-terracotta-100 font-sans">साथी केयर</span>
+          </span>
+          <p class="text-[11px] text-stone-500 tracking-wide font-medium">Apno Jaisi Dekhbhal • Verified Elder Companionship</p>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-stone-600">
+        <a href="#services" class="hover:text-terracotta-700 transition-colors">Our Services</a>
+        <a href="#live-dashboard" class="hover:text-terracotta-700 transition-colors flex items-center gap-1">
+          <span>Live Demo</span>
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        </a>
+        <a href="#trust" class="hover:text-terracotta-700 transition-colors">4-Pillar Trust</a>
+        <a href="#pricing" class="hover:text-terracotta-700 transition-colors">Pricing & Plans</a>
+        <a href="#testimonials" class="hover:text-terracotta-700 transition-colors">Family Stories</a>
+        <a href="#faq" class="hover:text-terracotta-700 transition-colors">FAQ</a>
+      </nav>
+
+      <!-- Right Action Area: Currency Toggle & Booking CTA -->
+      <div class="hidden sm:flex items-center gap-4">
+        <!-- Currency Switcher Pill -->
+        <div class="flex items-center bg-stone-200/80 p-1 rounded-full text-xs font-semibold border border-stone-300">
+          <button id="currency-inr" class="currency-btn active px-2.5 py-1 rounded-full transition-all duration-200">₹ INR</button>
+          <button id="currency-usd" class="currency-btn px-2.5 py-1 rounded-full transition-all duration-200 text-stone-600 hover:text-stone-900">$ USD</button>
+        </div>
+
+        <button class="open-booking-modal bg-terracotta-700 hover:bg-terracotta-800 text-white font-semibold text-sm px-5 py-2.5 rounded-full shadow-lg shadow-terracotta-700/20 hover:shadow-terracotta-700/30 transition-all hover:-translate-y-0.5 flex items-center gap-2">
+          <span>Book Free Meet & Greet</span>
+          <i data-lucide="calendar" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" class="lg:hidden p-2 text-stone-700 hover:text-terracotta-700 focus:outline-none">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-stone-200 px-6 py-5 space-y-4 text-sm font-medium text-stone-700">
+      <a href="#services" class="mobile-nav-link block py-2 hover:text-terracotta-700">Our Services</a>
+      <a href="#live-dashboard" class="mobile-nav-link block py-2 hover:text-terracotta-700">Live Dashboard Demo</a>
+      <a href="#trust" class="mobile-nav-link block py-2 hover:text-terracotta-700">4-Pillar Trust & Safety</a>
+      <a href="#pricing" class="mobile-nav-link block py-2 hover:text-terracotta-700">Pricing & Plans</a>
+      <a href="#testimonials" class="mobile-nav-link block py-2 hover:text-terracotta-700">Family Stories</a>
+      <a href="#faq" class="mobile-nav-link block py-2 hover:text-terracotta-700">Frequently Asked Questions</a>
+      
+      <div class="pt-4 border-t border-stone-100 flex flex-col gap-3">
+        <div class="flex items-center justify-between text-xs text-stone-500">
+          <span>Display Currency:</span>
+          <div class="flex items-center bg-stone-100 p-1 rounded-full text-xs font-semibold">
+            <button onclick="document.getElementById('currency-inr').click()" class="px-2 py-0.5 rounded-full bg-white shadow text-amber-800">₹ INR</button>
+            <button onclick="document.getElementById('currency-usd').click()" class="px-2 py-0.5 rounded-full text-stone-600">$ USD</button>
+          </div>
+        </div>
+        <button class="open-booking-modal w-full bg-terracotta-700 text-white font-semibold py-3 rounded-xl text-center shadow-md">
+          Book Free Parent Meet & Greet
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative bg-warm-hero pt-12 pb-20 lg:pt-16 lg:pb-28 overflow-hidden border-b border-stone-200/60">
+    <div class="absolute inset-0 bg-pattern-rangoli pointer-events-none"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Left Hero Content -->
+        <div class="lg:col-span-7 space-y-7">
+          
+          <!-- Empathetic Badge -->
+          <div class="inline-flex items-center gap-2 bg-amber-100/80 border border-amber-300/80 text-amber-900 px-3.5 py-1.5 rounded-full text-xs font-semibold shadow-sm">
+            <i data-lucide="shield-check" class="w-4 h-4 text-amber-700"></i>
+            <span>India's Dedicated Remote Eldercare Companionship Platform</span>
+          </div>
+
+          <!-- Main Title -->
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif-heading font-bold text-stone-900 tracking-tight leading-[1.15]">
+            You're Miles Away. <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-terracotta-700 via-amber-700 to-teal-800">
+              We're Right Next Door.
+            </span>
+          </h1>
+
+          <!-- Subtitle addressing the problem statement -->
+          <p class="text-lg sm:text-xl text-stone-600 leading-relaxed max-w-2xl font-normal">
+            Dignified, non-medical companionship for aging parents living independently in India. From <strong>doctor appointment escorts</strong> and <strong>pension errands</strong> to <strong>daily chai conversations</strong> — with verified WhatsApp photo updates delivered straight to your phone.
+          </p>
+
+          <!-- Core Value Proposition Checkmarks -->
+          <div class="grid sm:grid-cols-2 gap-3 pt-2 text-sm text-stone-700">
+            <div class="flex items-center gap-2.5">
+              <div class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
+                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+              </div>
+              <span><strong>100% Police Verified &amp; KYC Vetted</strong></span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <div class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
+                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+              </div>
+              <span><strong>Mandatory Free Parent Meet &amp; Greet</strong></span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <div class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
+                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+              </div>
+              <span><strong>Real-Time WhatsApp Photo Visit Logs</strong></span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <div class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
+                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+              </div>
+              <span><strong>₹5 Lakhs General Liability Insured</strong></span>
+            </div>
+          </div>
+
+          <!-- CTAs -->
+          <div class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+            <button class="open-booking-modal bg-terracotta-700 hover:bg-terracotta-800 text-white font-bold text-base px-8 py-4 rounded-xl shadow-xl shadow-terracotta-700/25 hover:shadow-terracotta-700/35 transition-all hover:-translate-y-0.5 flex items-center justify-center gap-3">
+              <span>Book a Free Parent Meet & Greet</span>
+              <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </button>
+            <a href="#trial-section" class="bg-white hover:bg-amber-50 text-stone-800 font-semibold text-base px-6 py-4 rounded-xl border border-stone-300 shadow-sm transition-all text-center flex items-center justify-center gap-2">
+              <i data-lucide="sparkles" class="w-4 h-4 text-amber-600"></i>
+              <span>Try a Single Visit (<span id="hero-trial-price">₹399</span>)</span>
+            </a>
+          </div>
+
+          <!-- Trust & Social Proof Strip -->
+          <div class="pt-4 border-t border-amber-200/70 flex flex-wrap items-center gap-6 text-xs text-stone-500">
+            <div class="flex -space-x-2 overflow-hidden">
+              <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1580746453801-37b0bc56f3b4?auto=format&fit=crop&w=120&q=80" alt="Indian family member">
+              <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=120&q=80" alt="Indian family member">
+              <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1463335361701-e90f4c5045d0?auto=format&fit=crop&w=120&q=80" alt="Indian family member">
+              <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1637059824899-a441006a6875?auto=format&fit=crop&w=120&q=80" alt="Indian family member">
+            </div>
+            <div>
+              <p class="font-semibold text-stone-800 text-sm">450+ Families Across 6 Cities</p>
+              <p>Rated 4.9/5 by children in Bengaluru, Mumbai, USA &amp; UK</p>
+            </div>
+            <div class="h-6 w-px bg-stone-300 hidden md:block"></div>
+            <div class="flex items-center gap-1.5 text-emerald-700 font-semibold">
+              <i data-lucide="shield-check" class="w-4 h-4"></i>
+              <span>Parent Veto Guaranteed</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Hero Interactive Visual Mockup -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="w-full max-w-md">
+            
+            <!-- Hero Floating Card -->
+            <div class="relative bg-white rounded-3xl p-6 shadow-2xl border border-stone-200/80 space-y-5">
+              
+              <div class="flex items-center justify-between pb-4 border-b border-stone-100">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold text-sm">
+                    SK
+                  </div>
+                  <div>
+                    <h2 class="text-sm font-bold text-stone-900">Live Visit In Progress</h2>
+                    <p class="text-xs text-stone-500">Pune • Kothrud Sector 2</p>
+                  </div>
+                </div>
+                <span class="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                  Active Now
+                </span>
+              </div>
+
+              <!-- Live WhatsApp Message Preview Bubble -->
+              <div class="bg-emerald-50/70 border border-emerald-200/80 rounded-2xl p-4 text-xs space-y-2">
+                <div class="flex items-center justify-between text-emerald-800 font-semibold">
+                  <span class="flex items-center gap-1.5">
+                    <i data-lucide="message-circle" class="w-4 h-4 text-emerald-600"></i>
+                    <span>WhatsApp Family Update</span>
+                  </span>
+                  <span class="text-[10px] text-stone-400">10:42 AM</span>
+                </div>
+                <p class="text-stone-700 italic">
+                  "Namaste Rohit ji! Aarti has safely escorted Papa back from Dr. Kulkarni's clinic. Sugar test was 114 (fasting). Blood pressure 126/82. Prescription refilled for 60 days. Papa is currently resting with ginger chai. Full photos &amp; receipt attached below."
+                </p>
+                <div class="pt-2 flex items-center gap-2">
+                  <span class="bg-white px-2 py-1 rounded-md text-[11px] font-medium text-stone-600 border border-emerald-100 flex items-center gap-1">
+                    <i data-lucide="camera" class="w-3 h-3 text-terracotta-600"></i> 3 Photos
+                  </span>
+                  <span class="bg-white px-2 py-1 rounded-md text-[11px] font-medium text-stone-600 border border-emerald-100 flex items-center gap-1">
+                    <i data-lucide="file-text" class="w-3 h-3 text-teal-600"></i> Doctor Slip
+                  </span>
+                  <span class="bg-white px-2 py-1 rounded-md text-[11px] font-medium text-stone-600 border border-emerald-100 flex items-center gap-1">
+                    <i data-lucide="check-check" class="w-3 h-3 text-blue-600"></i> Read by Rohit (USA)
+                  </span>
+                </div>
+              </div>
+
+              <!-- Caregiver Mini Card -->
+              <div class="bg-stone-50 rounded-2xl p-4 flex items-center gap-3.5 border border-stone-100">
+                <img src="https://images.unsplash.com/photo-1580746453801-37b0bc56f3b4?auto=format&fit=crop&w=150&q=80" alt="Care Companion Aarti" class="w-12 h-12 rounded-full object-cover border-2 border-white shadow-sm">
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center gap-1.5">
+                    <h3 class="text-sm font-bold text-stone-900 truncate">Aarti M.</h3>
+                    <i data-lucide="badge-check" class="w-4 h-4 text-teal-700 shrink-0"></i>
+                  </div>
+                  <p class="text-xs text-stone-500">Certified Geriatric Companion • 3+ yrs</p>
+                  <p class="text-[11px] text-amber-700 font-medium">★ 4.95 Rating • 180+ completed visits</p>
+                </div>
+                <button class="open-booking-modal text-xs font-bold text-terracotta-700 bg-terracotta-50 hover:bg-terracotta-100 px-3 py-1.5 rounded-lg transition-colors">
+                  Match
+                </button>
+              </div>
+
+              <!-- Quick Quote / Testimonial excerpt -->
+              <div class="text-xs text-stone-500 italic bg-amber-50/50 p-3 rounded-xl border border-amber-100/60">
+                "Living in Seattle, my biggest fear was Papa slipping or missing doctor advice. SaathiCare gives me 100% visibility every single Tuesday and Friday." — <strong>Rohit K.</strong>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- THE TWO-SIDED PROBLEM & "MISSING MIDDLE" PLATFORM EXPLANATION -->
+  <section id="services" class="py-20 bg-white border-b border-stone-200/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+        <span class="text-xs font-bold uppercase tracking-wider text-terracotta-700 bg-terracotta-50 px-3 py-1 rounded-full border border-terracotta-200">
+          The Missing Middle in Indian Elder Care
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-serif-heading font-bold text-stone-900">
+          Your Parents Don’t Need a Hospital Bed.<br>
+          <span class="text-terracotta-700">They Need a Trusted Family Companion.</span>
+        </h2>
+        <p class="text-stone-600 text-base sm:text-lg">
+          Until today, families were forced to choose between unverified domestic maids (zero accountability) or heavy ₹35,000/month clinical hospital agencies. SaathiCare bridges the gap with verified, dignified companionship.
+        </p>
+      </div>
+
+      <!-- Comparison Grid: Maid vs Hospital vs SaathiCare -->
+      <div class="grid md:grid-cols-3 gap-6 lg:gap-8 mb-16">
+        
+        <!-- Option 1: Informal Maid -->
+        <div class="bg-stone-50 rounded-2xl p-7 border border-stone-200 relative space-y-4">
+          <div class="text-stone-400 font-bold text-xs uppercase tracking-wider">Alternative 1</div>
+          <h3 class="text-lg font-bold text-stone-700">Informal Domestic Help</h3>
+          <p class="text-xs text-stone-500">Unregulated maid or local helper</p>
+          <ul class="space-y-3 text-xs text-stone-600 pt-3 border-t border-stone-200">
+            <li class="flex items-start gap-2">
+              <i data-lucide="x" class="w-4 h-4 text-red-500 shrink-0"></i>
+              <span>Zero background checks or police verification</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="x" class="w-4 h-4 text-red-500 shrink-0"></i>
+              <span>No visibility or WhatsApp updates for remote child</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="x" class="w-4 h-4 text-red-500 shrink-0"></i>
+              <span>High flight risk &amp; frequent unannounced absenteeism</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="x" class="w-4 h-4 text-red-500 shrink-0"></i>
+              <span>Cannot handle smartphone, banking, or doctor notes</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Option 2: Clinical Agencies -->
+        <div class="bg-stone-50 rounded-2xl p-7 border border-stone-200 relative space-y-4">
+          <div class="text-stone-400 font-bold text-xs uppercase tracking-wider">Alternative 2</div>
+          <h3 class="text-lg font-bold text-stone-700">Clinical Home-Nursing</h3>
+          <p class="text-xs text-stone-500">Hospital-at-home medical agencies</p>
+          <ul class="space-y-3 text-xs text-stone-600 pt-3 border-t border-stone-200">
+            <li class="flex items-start gap-2">
+              <i data-lucide="x" class="w-4 h-4 text-red-500 shrink-0"></i>
+              <span>Prohibitively expensive (₹25,000 to ₹45,000/month)</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="x" class="w-4 h-4 text-red-500 shrink-0"></i>
+              <span>Overly medicalized hospital vibe creates anxiety</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="x" class="w-4 h-4 text-red-500 shrink-0"></i>
+              <span>Refuses non-medical errands (bank, walks, tech support)</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="x" class="w-4 h-4 text-red-500 shrink-0"></i>
+              <span>Rigid contractual minimums and heavy agency lock-ins</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Option 3: SaathiCare (The Sweet Spot) -->
+        <div class="bg-gradient-to-b from-amber-50 to-white rounded-2xl p-7 border-2 border-terracotta-600 relative shadow-xl space-y-4">
+          <div class="absolute -top-3 right-6 bg-terracotta-700 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow">
+            The Missing Middle
+          </div>
+          <div class="text-terracotta-700 font-bold text-xs uppercase tracking-wider">The SaathiCare Way</div>
+          <h3 class="text-xl font-bold text-stone-900">Verified Companionship</h3>
+          <p class="text-xs text-stone-600">Starting at ₹1,800/mo (or ₹399/visit)</p>
+          <ul class="space-y-3 text-xs text-stone-700 pt-3 border-t border-amber-200">
+            <li class="flex items-start gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+              <span><strong>100% Police e-KYC &amp; verified background checks</strong></span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+              <span><strong>Real-time WhatsApp visit logs &amp; photos for children</strong></span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+              <span><strong>Doctor escort, prescription notes &amp; pharmacy pickups</strong></span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+              <span><strong>Dignified social conversations, park walks &amp; tech help</strong></span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Core Services Breakdown Grid -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Service 1 -->
+        <div class="bg-warm-card-glow rounded-2xl p-6 border border-stone-100 space-y-3 transition-all">
+          <div class="w-12 h-12 rounded-xl bg-terracotta-100 text-terracotta-700 flex items-center justify-center">
+            <i data-lucide="stethoscope" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-stone-900">Doctor Appointment Escort</h3>
+          <p class="text-sm text-stone-600 leading-relaxed">
+            Door-to-door cab escort, waiting in clinic queue, taking down doctor's instructions verbatim, and collecting prescription medicines.
+          </p>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="bg-warm-card-glow rounded-2xl p-6 border border-stone-100 space-y-3 transition-all">
+          <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center">
+            <i data-lucide="coffee" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-stone-900">Chai, Conversation &amp; Walks</h3>
+          <p class="text-sm text-stone-600 leading-relaxed">
+            Relieving the acute loneliness of living alone. Morning or evening neighborhood park strolls, board games, and respectful storytelling.
+          </p>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="bg-warm-card-glow rounded-2xl p-6 border border-stone-100 space-y-3 transition-all">
+          <div class="w-12 h-12 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center">
+            <i data-lucide="smartphone" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-stone-900">Smartphone &amp; Tech Support</h3>
+          <p class="text-sm text-stone-600 leading-relaxed">
+            Patiently setting up WhatsApp video calls with grandchildren overseas, clearing phone memory, and safely ordering groceries on Zepto/Blinkit.
+          </p>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="bg-warm-card-glow rounded-2xl p-6 border border-stone-100 space-y-3 transition-all">
+          <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center">
+            <i data-lucide="landmark" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-stone-900">Bank, Pension &amp; Utility Errands</h3>
+          <p class="text-sm text-stone-600 leading-relaxed">
+            Assisting with Jeevan Pramaan digital life certificates, accompanying them to post office/bank branches, and handling society utility dues.
+          </p>
+        </div>
+
+        <!-- Service 5 -->
+        <div class="bg-warm-card-glow rounded-2xl p-6 border border-stone-100 space-y-3 transition-all">
+          <div class="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-800 flex items-center justify-center">
+            <i data-lucide="pill" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-stone-900">Medication Routine Reminders</h3>
+          <p class="text-sm text-stone-600 leading-relaxed">
+            Organizing weekly medicine pill-boxes, verifying expiration dates, and sending gentle adherence reminders before meals.
+          </p>
+        </div>
+
+        <!-- Service 6 -->
+        <div class="bg-warm-card-glow rounded-2xl p-6 border border-stone-100 space-y-3 transition-all">
+          <div class="w-12 h-12 rounded-xl bg-rose-100 text-rose-800 flex items-center justify-center">
+            <i data-lucide="shield-alert" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-stone-900">Dedicated Care Coordinator</h3>
+          <p class="text-sm text-stone-600 leading-relaxed">
+            A single point of contact for the adult child on WhatsApp. Available across time zones (PST, EST, GMT, GST, IST) for immediate queries.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Scope of Service Discipline Note (Important for Business Model & Legal Clarity) -->
+      <div class="mt-12 bg-stone-100/80 rounded-2xl p-6 border border-stone-200 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-xs sm:text-sm text-stone-600">
+        <div class="flex items-start gap-3">
+          <i data-lucide="info" class="w-5 h-5 text-terracotta-700 shrink-0 mt-0.5"></i>
+          <div>
+            <span class="font-bold text-stone-800">Clear Scope Discipline:</span>
+            SaathiCare is deliberately focused on <em>non-medical companionship and assistance</em>. For clinical nursing (injections, IV, surgical wound dressing), we connect families directly to accredited hospital partners.
+          </div>
+        </div>
+        <a href="#faq" class="font-bold text-terracotta-700 hover:underline whitespace-nowrap">View Scope Boundaries &rarr;</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INTERACTIVE LIVE REMOTE DASHBOARD / WHATSAPP SIMULATOR -->
+  <section id="live-dashboard" class="py-20 bg-warm-subtle border-b border-stone-200/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="max-w-3xl mx-auto text-center space-y-4 mb-14">
+        <span class="text-xs font-bold uppercase tracking-wider text-teal-800 bg-teal-100 px-3 py-1 rounded-full border border-teal-200">
+          The Trust Technology Stack
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-serif-heading font-bold text-stone-900">
+          Experience the Remote Care Dashboard
+        </h2>
+        <p class="text-stone-600 text-base sm:text-lg">
+          Click the scenarios below to see the exact WhatsApp logs, GPS timestamps, vitals checks, and photo updates you will receive after every visit.
+        </p>
+
+        <!-- Scenario Selector Buttons -->
+        <div class="flex flex-wrap justify-center gap-3 pt-4">
+          <button class="dashboard-tab px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all bg-amber-600 text-white shadow-md flex items-center gap-2" data-scenario="companionship">
+            <i data-lucide="coffee" class="w-4 h-4"></i>
+            <span>Morning Chai &amp; Walk</span>
+          </button>
+          <button class="dashboard-tab px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all bg-white text-stone-700 hover:bg-amber-50 border border-stone-200 flex items-center gap-2" data-scenario="doctor">
+            <i data-lucide="stethoscope" class="w-4 h-4"></i>
+            <span>Doctor Appointment Escort</span>
+          </button>
+          <button class="dashboard-tab px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all bg-white text-stone-700 hover:bg-amber-50 border border-stone-200 flex items-center gap-2" data-scenario="errands">
+            <i data-lucide="smartphone" class="w-4 h-4"></i>
+            <span>Pension &amp; Tech Help</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Smartphone / Dashboard Interactive Preview Container -->
+      <div class="max-w-4xl mx-auto">
+        <div id="phone-preview-card" class="bg-white rounded-3xl shadow-2xl border-4 border-stone-800 overflow-hidden transition-all duration-300">
+          
+          <!-- Smartphone Top Bar / Header -->
+          <div class="bg-stone-900 text-white px-6 py-4 flex items-center justify-between border-b border-stone-800">
+            <div class="flex items-center gap-3">
+              <div class="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></div>
+              <div>
+                <div class="text-xs font-semibold tracking-wide text-stone-300">SAATHICARE PARENT PORTAL</div>
+                <div class="text-sm font-bold text-white flex items-center gap-2">
+                  <span id="dash-title">Morning Chai, Walk &amp; Medication Check</span>
+                </div>
+              </div>
+            </div>
+            <div class="text-right">
+              <span id="dash-badge" class="bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[11px] font-bold px-2.5 py-0.5 rounded-full">
+                Routine Daily Visit
+              </span>
+              <div id="dash-time" class="text-[11px] text-stone-400 mt-1">Today, 10:15 AM</div>
+            </div>
+          </div>
+
+          <!-- Main Interactive Body -->
+          <div class="p-6 sm:p-8 grid md:grid-cols-12 gap-6 bg-stone-50/50">
+            
+            <!-- Left Column: Verification & Log Summary -->
+            <div class="md:col-span-7 space-y-5">
+              
+              <!-- Assigned Caregiver Bar -->
+              <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="w-11 h-11 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-sm">
+                    AV
+                  </div>
+                  <div>
+                    <h4 id="dash-saathi-name" class="text-sm font-bold text-stone-900">Aarti Verma (Verified Companion)</h4>
+                    <p id="dash-saathi-rating" class="text-xs text-amber-700 font-semibold">4.9 ★ (140+ visits)</p>
+                  </div>
+                </div>
+                <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
+                  <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-600"></i> KYC Verified
+                </span>
+              </div>
+
+              <!-- GPS Check-In Timestamp -->
+              <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm space-y-2">
+                <div class="text-xs font-bold text-stone-500 uppercase tracking-wider">Arrival &amp; Vitals Verification</div>
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                  <div class="flex items-center gap-1.5 text-stone-700">
+                    <i data-lucide="map-pin" class="w-4 h-4 text-terracotta-600"></i>
+                    <span id="dash-checkin" class="font-medium">09:55 AM (GPS Verified: Model Town, Pune)</span>
+                  </div>
+                  <div class="flex items-center gap-1.5 font-bold text-teal-800 bg-teal-50 px-2 py-0.5 rounded">
+                    <i data-lucide="activity" class="w-3.5 h-3.5 text-teal-600"></i>
+                    <span id="dash-vitals">BP: 122/80 mmHg • Pulse: 72 bpm</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Caregiver Visit Log -->
+              <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm space-y-2">
+                <div class="text-xs font-bold text-stone-500 uppercase tracking-wider">Companion's Visit Observations</div>
+                <p id="dash-summary" class="text-xs sm:text-sm text-stone-700 leading-relaxed">
+                  Uncle was in good spirits. We took a 20-minute slow walk in the garden, enjoyed cardamom chai, and checked the weekly pill organizer. Blood pressure was normal. He also shared stories of his college days in Roorkee!
+                </p>
+              </div>
+
+              <!-- Checklist of Actions -->
+              <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm space-y-2">
+                <div class="text-xs font-bold text-stone-500 uppercase tracking-wider">Completed Activities</div>
+                <ul id="dash-actions-list" class="space-y-1.5">
+                  <li class="flex items-start text-xs text-stone-700 gap-1.5">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5"></i>
+                    <span>20-min gentle assisted park walk</span>
+                  </li>
+                  <li class="flex items-start text-xs text-stone-700 gap-1.5">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5"></i>
+                    <span>Morning medication adherence confirmed</span>
+                  </li>
+                  <li class="flex items-start text-xs text-stone-700 gap-1.5">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5"></i>
+                    <span>Cardamom chai &amp; 35 min heartfelt conversation</span>
+                  </li>
+                  <li class="flex items-start text-xs text-stone-700 gap-1.5">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5"></i>
+                    <span>Fresh milk &amp; fruit picked up from society booth</span>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+
+            <!-- Right Column: Live Photo Proof -->
+            <div class="md:col-span-5 space-y-4">
+              <div class="bg-white p-3 rounded-2xl border border-stone-200 shadow-sm">
+                <div class="text-xs font-bold text-stone-600 mb-2 flex items-center justify-between">
+                  <span class="flex items-center gap-1.5">
+                    <i data-lucide="camera" class="w-4 h-4 text-amber-600"></i>
+                    <span>Visit Photo Verification</span>
+                  </span>
+                  <span class="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-semibold">Geo-Tagged</span>
+                </div>
+                
+                <div class="rounded-xl overflow-hidden aspect-[4/3] bg-stone-100 relative group">
+                  <img id="dash-photo" src="https://images.unsplash.com/photo-1774437892287-6bff0fc8980a?auto=format&fit=crop&w=600&q=80" alt="Visit Photo Log" class="w-full h-full object-cover">
+                  <div class="absolute inset-0 bg-gradient-to-t from-stone-900/70 via-transparent to-transparent opacity-80"></div>
+                  <div class="absolute bottom-2 left-2 right-2 text-white text-[11px] font-medium leading-tight">
+                    <p id="dash-photo-caption">Uncle smiling on the veranda during morning cardamom chai</p>
+                  </div>
+                </div>
+
+                <div class="mt-3 pt-3 border-t border-stone-100 text-center">
+                  <button class="open-booking-modal w-full bg-terracotta-700 hover:bg-terracotta-800 text-white text-xs font-bold py-2.5 rounded-xl shadow transition-colors flex items-center justify-center gap-2">
+                    <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                    <span>Schedule Free Tea Meet for Your Parents</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="text-center">
+                <span class="text-[11px] text-stone-500">
+                  📱 Sent automatically to your WhatsApp family group within 15 minutes of visit conclusion.
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4-PILLAR TRUST & SAFETY INFRASTRUCTURE -->
+  <section id="trust" class="py-20 bg-white border-b border-stone-200/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+        <span class="text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+          Zero Compromise On Safety
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-serif-heading font-bold text-stone-900">
+          The 4-Pillar Trust &amp; Safety Protocol
+        </h2>
+        <p class="text-stone-600 text-base sm:text-lg">
+          Inviting someone into your parents' home requires absolute certainty. We built India's most rigorous vetting and accountability framework.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Pillar 1 -->
+        <div class="trust-badge-card bg-stone-50 rounded-2xl p-6 border border-stone-200 space-y-4">
+          <div class="w-12 h-12 rounded-xl bg-terracotta-100 text-terracotta-700 flex items-center justify-center font-bold text-lg">
+            1
+          </div>
+          <h3 class="text-lg font-bold text-stone-900">Triple-Layer Police &amp; KYC</h3>
+          <p class="text-xs sm:text-sm text-stone-600 leading-relaxed">
+            Every Saathi undergoes government Aadhaar e-KYC, court record screening, and jurisdictional police verification before their very first assignment.
+          </p>
+          <div class="pt-2 text-[11px] font-semibold text-terracotta-700 flex items-center gap-1">
+            <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> 100% Identity Verified
+          </div>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="trust-badge-card bg-stone-50 rounded-2xl p-6 border border-stone-200 space-y-4">
+          <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-lg">
+            2
+          </div>
+          <h3 class="text-lg font-bold text-stone-900">Geriatric Sensitivity Training</h3>
+          <p class="text-xs sm:text-sm text-stone-600 leading-relaxed">
+            30+ hours of empathetic training covering patience with hearing loss, mobility assistance, wheelchair safety, dementia awareness, and emergency response.
+          </p>
+          <div class="pt-2 text-[11px] font-semibold text-amber-800 flex items-center gap-1">
+            <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Certified Companions
+          </div>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="trust-badge-card bg-stone-50 rounded-2xl p-6 border border-stone-200 space-y-4">
+          <div class="w-12 h-12 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center font-bold text-lg">
+            3
+          </div>
+          <h3 class="text-lg font-bold text-stone-900">Mandatory Meet &amp; Greet</h3>
+          <p class="text-xs sm:text-sm text-stone-600 leading-relaxed">
+            No long-term commitment starts without an in-person introductory tea meeting. Your parents have <strong>100% veto rights</strong> to choose or change their companion.
+          </p>
+          <div class="pt-2 text-[11px] font-semibold text-teal-800 flex items-center gap-1">
+            <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Parent Veto Guaranteed
+          </div>
+        </div>
+
+        <!-- Pillar 4 -->
+        <div class="trust-badge-card bg-stone-50 rounded-2xl p-6 border border-stone-200 space-y-4">
+          <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-lg">
+            4
+          </div>
+          <h3 class="text-lg font-bold text-stone-900">₹5 Lakhs Liability Coverage</h3>
+          <p class="text-xs sm:text-sm text-stone-600 leading-relaxed">
+            Every visit is backed by comprehensive third-party liability insurance coverage, supported by our 24/7 dedicated care management escalation desk.
+          </p>
+          <div class="pt-2 text-[11px] font-semibold text-emerald-800 flex items-center gap-1">
+            <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Insured &amp; Backed
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TRANSPARENT PRICING & TRIAL SECTION -->
+  <section id="pricing" class="py-20 bg-warm-hero border-b border-stone-200/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="max-w-3xl mx-auto text-center space-y-4 mb-14">
+        <span class="text-xs font-bold uppercase tracking-wider text-terracotta-700 bg-terracotta-100 px-3 py-1 rounded-full border border-terracotta-300">
+          Honest, Transparent Pricing
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-serif-heading font-bold text-stone-900">
+          Peace of Mind Sized for Every Family
+        </h2>
+        <p class="text-stone-600 text-base sm:text-lg">
+          No hidden agency commissions or locked-in annual contracts. Pause anytime when you visit India.
+        </p>
+
+        <!-- Centered Currency Switcher for Mobile & Desktop -->
+        <div class="inline-flex items-center bg-stone-200/90 p-1.5 rounded-full text-xs font-semibold border border-stone-300 shadow-inner mt-4">
+          <button onclick="document.getElementById('currency-inr').click()" class="px-4 py-1.5 rounded-full transition-all">₹ Pay in INR (Indian Rupee)</button>
+          <button onclick="document.getElementById('currency-usd').click()" class="px-4 py-1.5 rounded-full transition-all text-stone-600 hover:text-stone-900">$ Pay in USD (NRI Friendly)</button>
+        </div>
+      </div>
+
+      <!-- Low Friction Single Trial Visit Highlight (Essential MPB Customer Acquisition Strategy) -->
+      <div id="trial-section" class="max-w-3xl mx-auto mb-12 bg-gradient-to-r from-amber-500 via-terracotta-600 to-terracotta-700 rounded-3xl p-6 sm:p-8 text-white shadow-xl">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div class="space-y-2 text-center sm:text-left">
+            <span class="bg-white/20 text-white text-[11px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+              Zero Commitment • Low Risk Funnel
+            </span>
+            <h3 class="text-2xl font-bold font-serif-heading">Single-Visit Test Trial</h3>
+            <p class="text-xs sm:text-sm text-amber-100 max-w-lg">
+              Not ready for a monthly subscription? Book a single 2-hour visit for a doctor escort, grocery errand, or tea companionship to see how much your parents enjoy the experience.
+            </p>
+          </div>
+          <div class="text-center sm:text-right shrink-0">
+            <div class="text-3xl sm:text-4xl font-bold font-serif-heading" id="price-trial">₹399</div>
+            <div class="text-[11px] text-amber-200">per 2-hour trial visit</div>
+            <button class="open-booking-modal mt-3 bg-white text-terracotta-700 hover:bg-amber-50 font-bold text-xs sm:text-sm px-6 py-2.5 rounded-xl shadow hover:shadow-lg transition-all" data-plan="trial">
+              Book Single Trial Visit
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 Subscription Tiers (from Business Model Canvas) -->
+      <div class="grid md:grid-cols-3 gap-8 items-stretch">
+        
+        <!-- Tier 1: Basic Companion -->
+        <div class="bg-white rounded-3xl p-7 border border-stone-200 shadow-md flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-bold uppercase tracking-wider text-stone-500">Essential Support</span>
+              <span class="text-xs bg-stone-100 text-stone-600 px-2.5 py-0.5 rounded-full font-medium">4 Visits / Mo</span>
+            </div>
+            <h3 class="text-2xl font-bold text-stone-900 font-serif-heading">Basic Companion</h3>
+            <p class="text-xs text-stone-500 leading-relaxed">
+              Ideal for independent parents who just need occasional doctor escorts and bi-weekly companionship check-ins.
+            </p>
+            <div class="pt-2">
+              <span class="text-3xl sm:text-4xl font-bold text-stone-900 font-serif-heading" id="price-basic">₹1,800</span>
+              <span class="text-stone-500 text-xs"> / month</span>
+              <p class="text-[11px] text-stone-400 mt-0.5" id="sub-basic">~₹450 / visit</p>
+            </div>
+
+            <ul class="space-y-3 text-xs text-stone-600 pt-4 border-t border-stone-100">
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                <span><strong>4 companion visits</strong> per month (2 hrs each)</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                <span>1 Doctor clinic escort &amp; prescription notes</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                <span>WhatsApp visit photo report &amp; log</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                <span>Vitals check (Blood Pressure &amp; Pulse)</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                <span>Aadhaar &amp; police-verified caregiver</span>
+              </li>
+            </ul>
+          </div>
+
+          <button class="open-booking-modal w-full bg-stone-100 hover:bg-stone-200 text-stone-800 font-bold text-xs sm:text-sm py-3 rounded-xl transition-colors" data-plan="basic">
+            Select Essential Companion
+          </button>
+        </div>
+
+        <!-- Tier 2: Standard Care (The Golden Tier from BMC) -->
+        <div class="bg-white rounded-3xl p-7 border-2 border-terracotta-600 shadow-2xl relative flex flex-col justify-between space-y-6">
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-terracotta-700 text-white text-[11px] font-bold px-4 py-1 rounded-full uppercase tracking-wider shadow">
+            Most Popular • Recommended
+          </div>
+          
+          <div class="space-y-4 pt-1">
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-bold uppercase tracking-wider text-terracotta-700">Routine Peace of Mind</span>
+              <span class="text-xs bg-terracotta-50 text-terracotta-700 px-2.5 py-0.5 rounded-full font-bold">12 Visits / Mo</span>
+            </div>
+            <h3 class="text-2xl font-bold text-stone-900 font-serif-heading">Standard Care</h3>
+            <p class="text-xs text-stone-500 leading-relaxed">
+              Our signature plan (3 visits per week). Complete routine companionship, walks, bank errands, and doctor escorts.
+            </p>
+            <div class="pt-2">
+              <span class="text-3xl sm:text-4xl font-bold text-terracotta-700 font-serif-heading" id="price-standard">₹3,200</span>
+              <span class="text-stone-500 text-xs"> / month</span>
+              <p class="text-[11px] text-terracotta-800/80 font-semibold mt-0.5" id="sub-standard">~₹266 / visit</p>
+            </div>
+
+            <ul class="space-y-3 text-xs text-stone-700 pt-4 border-t border-amber-100">
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-terracotta-600 shrink-0"></i>
+                <span><strong>12 visits per month</strong> (3x a week)</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-terracotta-600 shrink-0"></i>
+                <span>Up to 2 Doctor appointments &amp; pharmacy pickups</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-terracotta-600 shrink-0"></i>
+                <span>Neighborhood walks &amp; morning/evening tea</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-terracotta-600 shrink-0"></i>
+                <span>Pension, Jeevan Pramaan &amp; utility bill assistance</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-terracotta-600 shrink-0"></i>
+                <span>Dedicated Family Care Coordinator on WhatsApp</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-terracotta-600 shrink-0"></i>
+                <span><strong>Parent Veto &amp; Free Rematch Guarantee</strong></span>
+              </li>
+            </ul>
+          </div>
+
+          <button class="open-booking-modal w-full bg-terracotta-700 hover:bg-terracotta-800 text-white font-bold text-xs sm:text-sm py-3.5 rounded-xl shadow-lg shadow-terracotta-700/20 hover:shadow-terracotta-700/30 transition-all" data-plan="standard">
+            Choose Standard Care Plan
+          </button>
+        </div>
+
+        <!-- Tier 3: Daily Saathi -->
+        <div class="bg-white rounded-3xl p-7 border border-stone-200 shadow-md flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-bold uppercase tracking-wider text-teal-700">Daily Presence</span>
+              <span class="text-xs bg-teal-50 text-teal-800 px-2.5 py-0.5 rounded-full font-medium">26 Visits / Mo</span>
+            </div>
+            <h3 class="text-2xl font-bold text-stone-900 font-serif-heading">Daily Saathi</h3>
+            <p class="text-xs text-stone-500 leading-relaxed">
+              Monday through Saturday daily presence. Complete daily routine support, tech help, grocery runs, and emotional companionship.
+            </p>
+            <div class="pt-2">
+              <span class="text-3xl sm:text-4xl font-bold text-stone-900 font-serif-heading" id="price-daily">₹5,800</span>
+              <span class="text-stone-500 text-xs"> / month</span>
+              <p class="text-[11px] text-stone-400 mt-0.5" id="sub-daily">~₹223 / visit</p>
+            </div>
+
+            <ul class="space-y-3 text-xs text-stone-600 pt-4 border-t border-stone-100">
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-teal-700 shrink-0"></i>
+                <span><strong>26 daily visits per month</strong> (Mon to Sat)</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-teal-700 shrink-0"></i>
+                <span>Unlimited doctor escorts &amp; routine medicine pickups</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-teal-700 shrink-0"></i>
+                <span>Daily walk partner, grocery &amp; tech assistance</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-teal-700 shrink-0"></i>
+                <span>Priority emergency dispatch backup</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-teal-700 shrink-0"></i>
+                <span>Senior supervisor monthly in-person audit</span>
+              </li>
+            </ul>
+          </div>
+
+          <button class="open-booking-modal w-full bg-stone-100 hover:bg-stone-200 text-stone-800 font-bold text-xs sm:text-sm py-3 rounded-xl transition-colors" data-plan="daily">
+            Select Daily Saathi
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Trust Assurance Footnote -->
+      <div class="mt-12 text-center text-xs text-stone-500 max-w-xl mx-auto">
+        <p>🛡️ All plans include our <strong>Parent Satisfaction Guarantee</strong>: If your parents are not completely comfortable after the introductory meet-and-greet, you owe ₹0.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS (3 SIMPLE STEPS) -->
+  <section class="py-20 bg-white border-b border-stone-200/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+        <span class="text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-100 px-3 py-1 rounded-full border border-amber-200">
+          Effortless Remote Setup
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-serif-heading font-bold text-stone-900">
+          How SaathiCare Works for Migrant Families
+        </h2>
+        <p class="text-stone-600 text-base sm:text-lg">
+          Designed specifically for children living in other cities or abroad to coordinate without stress.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 relative">
+        
+        <!-- Step 1 -->
+        <div class="bg-stone-50 rounded-2xl p-7 border border-stone-200 space-y-4 relative">
+          <div class="w-10 h-10 rounded-full bg-terracotta-700 text-white flex items-center justify-center font-bold text-sm shadow">
+            1
+          </div>
+          <h3 class="text-lg font-bold text-stone-900">Tell Us About Your Parent</h3>
+          <p class="text-xs sm:text-sm text-stone-600 leading-relaxed">
+            Fill out a 2-minute request with your parent’s city, neighborhood, language preference (Hindi, Marathi, Punjabi, Tamil, etc.), and their favorite daily routines.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="bg-stone-50 rounded-2xl p-7 border border-stone-200 space-y-4 relative">
+          <div class="w-10 h-10 rounded-full bg-amber-600 text-white flex items-center justify-center font-bold text-sm shadow">
+            2
+          </div>
+          <h3 class="text-lg font-bold text-stone-900">In-Home Tea &amp; Meet-and-Greet</h3>
+          <p class="text-xs sm:text-sm text-stone-600 leading-relaxed">
+            Our local coordinator introduces the matched Saathi to your parents over tea. Your parents evaluate the rapport at zero cost and give their personal thumbs up.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="bg-stone-50 rounded-2xl p-7 border border-stone-200 space-y-4 relative">
+          <div class="w-10 h-10 rounded-full bg-teal-700 text-white flex items-center justify-center font-bold text-sm shadow">
+            3
+          </div>
+          <h3 class="text-lg font-bold text-stone-900">Real-Time WhatsApp Updates</h3>
+          <p class="text-xs sm:text-sm text-stone-600 leading-relaxed">
+            After every scheduled visit, receive photo proof, vitals logs, and doctor summaries right on WhatsApp, no matter which global time zone you are working in.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="mt-12 text-center">
+        <button class="open-booking-modal bg-terracotta-700 hover:bg-terracotta-800 text-white font-bold text-sm px-8 py-3.5 rounded-full shadow-lg transition-all">
+          Start With Step 1: Request a Companion Match &rarr;
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS & DIASPORA STORIES -->
+  <section id="testimonials" class="py-20 bg-warm-subtle border-b border-stone-200/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+        <span class="text-xs font-bold uppercase tracking-wider text-teal-800 bg-teal-100 px-3 py-1 rounded-full border border-teal-200">
+          Real Stories, Real Relief
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-serif-heading font-bold text-stone-900">
+          Loved by Parents in India, Trusted by Children Worldwide
+        </h2>
+        <p class="text-stone-600 text-base sm:text-lg">
+          Read how families solved the emotional guilt and logistical worry of long-distance elder care.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        
+        <!-- Story 1: Seattle to Pune -->
+        <div class="bg-white rounded-2xl p-7 border border-stone-200/80 shadow-md space-y-4 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex text-amber-500 text-xs">
+              ★★★★★
+            </div>
+            <p class="text-xs sm:text-sm text-stone-700 italic leading-relaxed">
+              "Living in Seattle, every time Papa had an appointment at Deenanath Mangeshkar Hospital, I would stay awake all night worrying about him navigating the hospital corridors alone. With SaathiCare, Aarti escorts him, takes down the doctor's exact words, and sends me the prescription photos within 15 minutes. It's the best ₹3,200 I spend each month."
+            </p>
+          </div>
+          <div class="pt-4 border-t border-stone-100 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-amber-100 text-amber-800 font-bold flex items-center justify-center text-sm">
+              RS
+            </div>
+            <div>
+              <h4 class="text-xs font-bold text-stone-900">Rohit Sharma</h4>
+              <p class="text-[11px] text-stone-500">Cloud Architect in Seattle • Father in Pune</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Story 2: Bengaluru to Lucknow -->
+        <div class="bg-white rounded-2xl p-7 border border-stone-200/80 shadow-md space-y-4 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex text-amber-500 text-xs">
+              ★★★★★
+            </div>
+            <p class="text-xs sm:text-sm text-stone-700 italic leading-relaxed">
+              "My mother lost my father last year and was slipping into severe isolation in Gomti Nagar. She adamantly refused full-time domestic maids. SaathiCare introduced Neha, who visits three times a week for tea, walks in the colony park, and listens to Ma's stories. My mother now waits eagerly for Neha's visits."
+            </p>
+          </div>
+          <div class="pt-4 border-t border-stone-100 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-rose-100 text-rose-800 font-bold flex items-center justify-center text-sm">
+              PI
+            </div>
+            <div>
+              <h4 class="text-xs font-bold text-stone-900">Priya Iyer</h4>
+              <p class="text-[11px] text-stone-500">Product Director in Bengaluru • Mother in Lucknow</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Story 3: London to Jaipur -->
+        <div class="bg-white rounded-2xl p-7 border border-stone-200/80 shadow-md space-y-4 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex text-amber-500 text-xs">
+              ★★★★★
+            </div>
+            <p class="text-xs sm:text-sm text-stone-700 italic leading-relaxed">
+              "The digital life certificate (Jeevan Pramaan) had become a yearly nightmare with my 78-year-old parents waiting in SBI queues. SaathiCare's companion finished it right on their smartphone via biometric face recognition in 15 minutes! The WhatsApp coordinator is incredibly responsive."
+            </p>
+          </div>
+          <div class="pt-4 border-t border-stone-100 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-teal-100 text-teal-800 font-bold flex items-center justify-center text-sm">
+              VM
+            </div>
+            <div>
+              <h4 class="text-xs font-bold text-stone-900">Vikram Malhotra</h4>
+              <p class="text-[11px] text-stone-500">NHS Consultant in London • Parents in Jaipur</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section id="faq" class="py-20 bg-white border-b border-stone-200/60">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center space-y-4 mb-14">
+        <span class="text-xs font-bold uppercase tracking-wider text-terracotta-700 bg-terracotta-50 px-3 py-1 rounded-full border border-terracotta-200">
+          Got Questions?
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-serif-heading font-bold text-stone-900">
+          Frequently Asked Questions
+        </h2>
+        <p class="text-stone-600 text-base">
+          Everything you need to know about our safety standards, caregiver matching, and visit policies.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        
+        <!-- FAQ 1 -->
+        <div class="faq-item border border-stone-200 rounded-2xl overflow-hidden">
+          <button class="faq-trigger w-full px-6 py-5 text-left font-bold text-stone-800 flex items-center justify-between gap-4 bg-stone-50/70 hover:bg-stone-100 transition-colors text-sm sm:text-base">
+            <span>What if my elderly parents resist having a companion visit?</span>
+            <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-stone-500 transition-transform duration-200 shrink-0"></i>
+          </button>
+          <div class="faq-content hidden px-6 py-4 bg-white text-xs sm:text-sm text-stone-600 border-t border-stone-100 leading-relaxed">
+            This is the #1 concern we hear from adult children! Traditional Indian parents pride themselves on self-reliance. We never introduce our companions as "caregivers" or "servants" — we introduce them as a polite young family friend or research associate coming over for a warm cup of chai. Our mandatory free introductory tea session allows them to talk without any pressure. If they don’t feel an instant bond, you have zero obligation to proceed.
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-item border border-stone-200 rounded-2xl overflow-hidden">
+          <button class="faq-trigger w-full px-6 py-5 text-left font-bold text-stone-800 flex items-center justify-between gap-4 bg-stone-50/70 hover:bg-stone-100 transition-colors text-sm sm:text-base">
+            <span>How thoroughly are the Saathi companions vetted?</span>
+            <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-stone-500 transition-transform duration-200 shrink-0"></i>
+          </button>
+          <div class="faq-content hidden px-6 py-4 bg-white text-xs sm:text-sm text-stone-600 border-t border-stone-100 leading-relaxed">
+            We operate a stringent 4-stage screening process: (1) Government Aadhaar e-KYC and address verification, (2) Local jurisdictional police clearance certificate and criminal court background check, (3) In-person psychological empathy and temperament assessment, and (4) 30+ hours of geriatric sensitization training. Only 1 out of 7 applicants makes it to our platform.
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="faq-item border border-stone-200 rounded-2xl overflow-hidden">
+          <button class="faq-trigger w-full px-6 py-5 text-left font-bold text-stone-800 flex items-center justify-between gap-4 bg-stone-50/70 hover:bg-stone-100 transition-colors text-sm sm:text-base">
+            <span>Is this a medical nursing service or a non-medical companionship service?</span>
+            <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-stone-500 transition-transform duration-200 shrink-0"></i>
+          </button>
+          <div class="faq-content hidden px-6 py-4 bg-white text-xs sm:text-sm text-stone-600 border-t border-stone-100 leading-relaxed">
+            SaathiCare is deliberately focused on <strong>non-medical companionship and escort support</strong>. Our companions handle doctor clinic escorts, hospital queue navigation, medicine pill-box checks, grocery errands, bank visits, and conversation. We do <em>not</em> administer injections, manage IV lines, or perform surgical dressings. For clinical healthcare needs, our coordinators assist you in connecting with certified clinical partners.
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="faq-item border border-stone-200 rounded-2xl overflow-hidden">
+          <button class="faq-trigger w-full px-6 py-5 text-left font-bold text-stone-800 flex items-center justify-between gap-4 bg-stone-50/70 hover:bg-stone-100 transition-colors text-sm sm:text-base">
+            <span>Can I pause my subscription when I travel to India to visit them?</span>
+            <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-stone-500 transition-transform duration-200 shrink-0"></i>
+          </button>
+          <div class="faq-content hidden px-6 py-4 bg-white text-xs sm:text-sm text-stone-600 border-t border-stone-100 leading-relaxed">
+            Yes, absolutely! We know you look forward to spending quality time with your parents when you travel home. You can pause your subscription anytime with 48 hours' notice on WhatsApp, and resume seamlessly when you return to your city or country. Unused visits roll over for up to 90 days.
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="faq-item border border-stone-200 rounded-2xl overflow-hidden">
+          <button class="faq-trigger w-full px-6 py-5 text-left font-bold text-stone-800 flex items-center justify-between gap-4 bg-stone-50/70 hover:bg-stone-100 transition-colors text-sm sm:text-base">
+            <span>How does billing work for NRIs living in the USA, UK, or UAE?</span>
+            <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-stone-500 transition-transform duration-200 shrink-0"></i>
+          </button>
+          <div class="faq-content hidden px-6 py-4 bg-white text-xs sm:text-sm text-stone-600 border-t border-stone-100 leading-relaxed">
+            We accept all major international credit/debit cards (Visa, Mastercard, Amex) in USD or GBP, as well as Indian UPI and Net Banking for domestic migrant children. Invoices are emailed automatically with detailed visit audit timestamps.
+          </div>
+        </div>
+
+        <!-- FAQ 6 -->
+        <div class="faq-item border border-stone-200 rounded-2xl overflow-hidden">
+          <button class="faq-trigger w-full px-6 py-5 text-left font-bold text-stone-800 flex items-center justify-between gap-4 bg-stone-50/70 hover:bg-stone-100 transition-colors text-sm sm:text-base">
+            <span>What happens in case of a medical emergency during a visit?</span>
+            <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-stone-500 transition-transform duration-200 shrink-0"></i>
+          </button>
+          <div class="faq-content hidden px-6 py-4 bg-white text-xs sm:text-sm text-stone-600 border-t border-stone-100 leading-relaxed">
+            Every Saathi is certified in basic first aid and emergency protocol. In an acute emergency, their immediate action is to dispatch local emergency ambulance services (108/private hospital emergency) and alert our 24/7 care coordination desk, who immediately calls both your primary and secondary emergency numbers.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA STRIP SECTION -->
+  <section class="py-16 bg-gradient-to-tr from-terracotta-800 via-amber-800 to-teal-900 text-white relative overflow-hidden">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 relative z-10">
+      <h2 class="text-3xl sm:text-5xl font-serif-heading font-bold tracking-tight">
+        Give Your Parents The Care They Deserve.<br>
+        <span class="text-amber-300">Give Yourself Total Peace of Mind.</span>
+      </h2>
+      <p class="text-amber-100 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+        Join hundreds of migrant sons and daughters who sleep peacefully knowing a verified, caring Saathi is just minutes away from their parents.
+      </p>
+      <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <button class="open-booking-modal bg-white text-terracotta-800 hover:bg-amber-50 font-bold text-base px-8 py-4 rounded-xl shadow-xl transition-all hover:-translate-y-0.5">
+          Schedule Free In-Home Tea Meet &rarr;
+        </button>
+        <a href="https://wa.me/919876543210?text=Hi%20SaathiCare,%20I%20want%20to%20learn%20more%20about%20elder%20care%20for%20my%20parents" target="_blank" class="bg-white/10 hover:bg-white/20 text-white font-semibold text-base px-6 py-4 rounded-xl border border-white/30 backdrop-blur transition-all flex items-center gap-2">
+          <i data-lucide="message-circle" class="w-5 h-5 text-emerald-400"></i>
+          <span>Chat on WhatsApp Directly</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-stone-950 text-stone-400 py-16 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+        
+        <div class="col-span-2 space-y-4">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-xl bg-terracotta-700 text-white flex items-center justify-center font-bold">
+              <i data-lucide="heart-handshake" class="w-5 h-5"></i>
+            </div>
+            <span class="text-lg font-bold text-white tracking-tight">SaathiCare</span>
+          </div>
+          <p class="text-stone-400 max-w-sm leading-relaxed">
+            Verified, non-medical elder care and companionship for India's migrant families. Bridging geographical distance with dignity, respect, and transparent technology.
+          </p>
+          <div class="pt-2 flex items-center gap-4 text-stone-300">
+            <span class="flex items-center gap-1"><i data-lucide="shield" class="w-4 h-4 text-emerald-400"></i> DPDP Act Compliant</span>
+            <span class="flex items-center gap-1"><i data-lucide="lock" class="w-4 h-4 text-amber-400"></i> 256-Bit Encrypted</span>
+          </div>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="text-stone-200 font-bold tracking-wider uppercase text-[11px]">Services</h4>
+          <ul class="space-y-2">
+            <li><a href="#services" class="hover:text-white transition-colors">Doctor Appointment Escort</a></li>
+            <li><a href="#services" class="hover:text-white transition-colors">Morning &amp; Evening Walks</a></li>
+            <li><a href="#services" class="hover:text-white transition-colors">Bank &amp; Pension Assistance</a></li>
+            <li><a href="#services" class="hover:text-white transition-colors">Tech &amp; Smartphone Help</a></li>
+            <li><a href="#services" class="hover:text-white transition-colors">Medication Adherence Reminders</a></li>
+          </ul>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="text-stone-200 font-bold tracking-wider uppercase text-[11px]">Active Cities</h4>
+          <ul class="space-y-2">
+            <li><span>Pune, Maharashtra</span></li>
+            <li><span>Lucknow, Uttar Pradesh</span></li>
+            <li><span>Jaipur, Rajasthan</span></li>
+            <li><span>Chandigarh &amp; Tricity</span></li>
+            <li><span>Indore, Madhya Pradesh</span></li>
+            <li><span>Coimbatore, Tamil Nadu</span></li>
+          </ul>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="text-stone-200 font-bold tracking-wider uppercase text-[11px]">Academic &amp; Venture Context</h4>
+          <p class="text-stone-500 leading-relaxed">
+            IFHE Digital Venture Lab Capstone Project.<br>
+            Managing Platform Businesses (MPB) 2026-27.<br>
+            Structured around two-sided trust platform economics and Tier 2/3 eldercare opportunity.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="pt-8 border-t border-stone-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-stone-500 text-[11px]">
+        <div>
+          &copy; 2026 SaathiCare Technologies Pvt. Ltd. All rights reserved. Built with empathy for Indian elders.
+        </div>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-stone-300">Privacy Policy (DPDP Act)</a>
+          <a href="#" class="hover:text-stone-300">Terms of Service</a>
+          <a href="#" class="hover:text-stone-300">Caregiver Code of Conduct</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP DIRECT CONTACT BUTTON -->
+  <a href="https://wa.me/919876543210?text=Hello%20SaathiCare!%20I%20live%20away%20from%20my%20parents%20in%20India%20and%20want%20to%20learn%20about%20your%20companionship%20visits." target="_blank" class="fixed bottom-6 left-6 z-40 bg-emerald-600 hover:bg-emerald-700 text-white p-3.5 rounded-full shadow-2xl flex items-center gap-2.5 transition-all hover:scale-105 border-2 border-white/30" title="Chat with a Care Coordinator on WhatsApp">
+    <i data-lucide="message-circle" class="w-6 h-6"></i>
+    <span class="text-xs font-bold hidden md:inline-block pr-1">WhatsApp Care Desk</span>
+  </a>
+
+  <!-- INTERACTIVE BOOKING / MEET-AND-GREET MODAL -->
+  <div id="booking-modal" class="fixed inset-0 z-50 hidden modal-backdrop items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-stone-200 relative my-8">
+      
+      <!-- Close Button -->
+      <button class="close-booking-modal absolute top-5 right-5 text-stone-400 hover:text-stone-700 p-1 rounded-full hover:bg-stone-100 transition-colors">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <!-- FORM SECTION -->
+      <div id="modal-form-section" class="space-y-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-terracotta-700 bg-terracotta-50 px-2.5 py-0.5 rounded-full">
+            Free • No Obligation
+          </span>
+          <h3 class="text-2xl font-bold font-serif-heading text-stone-900 mt-2">Schedule a Free Parent Meet &amp; Greet</h3>
+          <p class="text-xs sm:text-sm text-stone-500 mt-1">
+            We will introduce a verified Saathi to your parents over tea. Your parents have full veto authority.
+          </p>
+        </div>
+
+        <form id="saathicare-booking-form" class="space-y-4">
+          
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-stone-700 mb-1">Parent's Full Name(s) *</label>
+              <input type="text" id="booking-parent-name" required placeholder="e.g. Ramesh &amp; Sunita Gupta" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-sm focus:ring-2 focus:ring-terracotta-600 focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-stone-700 mb-1">Parent's Age &amp; Language *</label>
+              <input type="text" required placeholder="e.g. 72 yrs • Hindi / Marathi" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-sm focus:ring-2 focus:ring-terracotta-600 focus:outline-none">
+            </div>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-stone-700 mb-1">Parent's City &amp; Area *</label>
+              <select id="booking-city" required class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-sm focus:ring-2 focus:ring-terracotta-600 focus:outline-none bg-white">
+                <option value="">Select City</option>
+                <option value="Pune - Kothrud / Baner / Viman Nagar">Pune (Kothrud / Baner / Viman Nagar)</option>
+                <option value="Lucknow - Gomti Nagar / Aliganj">Lucknow (Gomti Nagar / Aliganj)</option>
+                <option value="Jaipur - Vaishali Nagar / Malviya Nagar">Jaipur (Vaishali / Malviya Nagar)</option>
+                <option value="Chandigarh - Sector 35 / Mohali / Panchkula">Chandigarh / Tricity</option>
+                <option value="Indore - Vijay Nagar / Palasia">Indore (Vijay Nagar / Palasia)</option>
+                <option value="Coimbatore - RS Puram / Race Course">Coimbatore (RS Puram / Race Course)</option>
+                <option value="Other City (Join Waitlist)">Other City (Join Expansion Waitlist)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-stone-700 mb-1">Preferred Care Plan *</label>
+              <select id="booking-plan" required class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-sm focus:ring-2 focus:ring-terracotta-600 focus:outline-none bg-white">
+                <option value="standard">Standard Care (₹3,200/mo - 12 Visits) [Popular]</option>
+                <option value="trial">Single Test Trial (₹399 - 1 Visit)</option>
+                <option value="basic">Basic Companion (₹1,800/mo - 4 Visits)</option>
+                <option value="daily">Daily Saathi (₹5,800/mo - 26 Visits)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-stone-700 mb-1">Your Name &amp; Location (Child) *</label>
+              <input type="text" required placeholder="e.g. Rahul Gupta (Seattle, USA)" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-sm focus:ring-2 focus:ring-terracotta-600 focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-stone-700 mb-1">Your WhatsApp Number *</label>
+              <input type="tel" id="booking-child-phone" required placeholder="+1 206... or +91 98..." class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-sm focus:ring-2 focus:ring-terracotta-600 focus:outline-none">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-stone-700 mb-1">Primary Support Required</label>
+            <div class="grid grid-cols-2 gap-2 text-xs text-stone-700">
+              <label class="flex items-center gap-2 p-2 rounded-lg border border-stone-200 hover:bg-stone-50 cursor-pointer">
+                <input type="checkbox" checked class="text-terracotta-600 rounded">
+                <span>Doctor Escort &amp; Clinic</span>
+              </label>
+              <label class="flex items-center gap-2 p-2 rounded-lg border border-stone-200 hover:bg-stone-50 cursor-pointer">
+                <input type="checkbox" checked class="text-terracotta-600 rounded">
+                <span>Daily Chai &amp; Park Walks</span>
+              </label>
+              <label class="flex items-center gap-2 p-2 rounded-lg border border-stone-200 hover:bg-stone-50 cursor-pointer">
+                <input type="checkbox" class="text-terracotta-600 rounded">
+                <span>Smartphone &amp; Tech Help</span>
+              </label>
+              <label class="flex items-center gap-2 p-2 rounded-lg border border-stone-200 hover:bg-stone-50 cursor-pointer">
+                <input type="checkbox" class="text-terracotta-600 rounded">
+                <span>Bank &amp; Pension Errands</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <button type="submit" class="w-full bg-terracotta-700 hover:bg-terracotta-800 text-white font-bold text-sm py-3.5 rounded-xl shadow-lg shadow-terracotta-700/25 transition-all">
+              Confirm &amp; Assign Local Care Coordinator
+            </button>
+            <p class="text-[11px] text-stone-400 text-center mt-2">
+              🔒 We never sell contact information. Compliant with India's DPDP Act 2023.
+            </p>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- SUCCESS CONFIRMATION SECTION -->
+      <div id="modal-success-section" class="hidden text-center py-6 space-y-5">
+        <div class="w-16 h-16 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mx-auto shadow-md">
+          <i data-lucide="check-check" class="w-8 h-8"></i>
+        </div>
+        <div class="space-y-2">
+          <h3 class="text-2xl font-bold font-serif-heading text-stone-900">Coordination Initiated!</h3>
+          <p id="success-summary-text" class="text-xs sm:text-sm text-stone-600 max-w-md mx-auto leading-relaxed">
+            A dedicated SaathiCare coordinator has been assigned. We will reach out on WhatsApp within 2 hours to coordinate the free introductory tea visit.
+          </p>
+        </div>
+
+        <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 text-xs text-emerald-900 max-w-md mx-auto space-y-1.5 text-left">
+          <div class="font-bold flex items-center gap-1.5">
+            <i data-lucide="shield-check" class="w-4 h-4 text-emerald-700"></i> What happens next:
+          </div>
+          <ol class="list-decimal list-inside space-y-1 text-stone-600 pl-1">
+            <li>Coordinator confirms your parents' schedule &amp; dietary habits.</li>
+            <li>We share the Saathi's police e-KYC profile for your family review.</li>
+            <li>The introductory tea visit occurs at zero obligation.</li>
+          </ol>
+        </div>
+
+        <button class="close-booking-modal bg-stone-900 hover:bg-stone-800 text-white font-bold text-xs sm:text-sm px-6 py-2.5 rounded-xl">
+          Back to Website
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Lucide Icon Trigger & Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>

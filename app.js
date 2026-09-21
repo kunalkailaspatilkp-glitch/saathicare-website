@@ -335,13 +335,27 @@ function initBookingModal() {
   });
 
   // Form submission
+  const SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyot400cc1O3wUYSxrWKUV9SaZCPZEdl-AqShLRWVCOaxDZ9WV5gm_mQWZZ9vKNU3Lk/exec';
+
   if (bookingForm) {
     bookingForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
       const parentName = document.getElementById('booking-parent-name')?.value || 'Your Parents';
       const city = document.getElementById('booking-city')?.value || 'Your City';
+      const plan = document.getElementById('booking-plan')?.value || '';
       const childPhone = document.getElementById('booking-child-phone')?.value || '';
+
+      // Send to Google Sheet via Apps Script (fire-and-forget; no-cors means
+      // we can't read the response, but the row still gets written).
+      fetch(SHEET_ENDPOINT, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ parentName, city, plan, childPhone })
+      }).catch((err) => {
+        console.error('Booking sheet sync failed (form still submitted locally):', err);
+      });
 
       // Set confirmation summary
       const confirmedMsg = document.getElementById('success-summary-text');

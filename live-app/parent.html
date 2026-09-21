@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SaathiCare — Amma</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  .wrap { max-width: 420px; }
+  .big-title { font-size: 26px; font-weight: 700; text-align: center; margin: 4px 0 20px; }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <span class="brand">SaathiCare</span>
+    <span class="role-tag">Amma's Screen</span>
+  </div>
+
+  <div class="wrap">
+
+    <div id="gate" class="card gate">
+      <h2 style="margin:0;">Enter your code</h2>
+      <p style="color:var(--ink-soft); font-size:14px; margin:0;">
+        Type the code your child gave you, then tap Connect.
+      </p>
+      <input id="codeInput" type="text" placeholder="e.g. SAATHI2026" value="SAATHI2026">
+      <button class="btn" id="connectBtn" style="font-size:16px; padding:14px 24px;">Connect</button>
+    </div>
+
+    <div id="dashboard" class="hidden">
+      <p style="text-align:center; color:var(--ink-soft); margin:0 0 2px;">Good afternoon,</p>
+      <div class="big-title" id="parentNameEl">—</div>
+
+      <div class="card" style="text-align:center;">
+        <div class="avatar" id="caregiverAvatar" style="margin:0 auto 10px;">?</div>
+        <div style="font-size:18px; font-weight:700;" id="caregiverLine">—</div>
+        <div style="color:var(--ink-soft); font-size:14px;" id="visitLine">—</div>
+        <button class="btn" style="margin-top:12px; border-radius:999px;">📞 Call coordinator</button>
+      </div>
+
+      <div class="checkin-row">
+        <button class="big-check-btn" id="goodBtn"><span class="emoji">🙂</span> I'm doing well</button>
+        <button class="big-check-btn" id="helpBtn"><span class="emoji">🤍</span> I need something</button>
+      </div>
+
+      <div id="confirmMsg" class="hidden card" style="margin-top:16px; background:var(--teal-soft); color:var(--teal-strong); font-weight:600; text-align:center;"></div>
+    </div>
+
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script>
+    let familyRef = null;
+
+    document.getElementById('connectBtn').addEventListener('click', async () => {
+      const code = document.getElementById('codeInput').value.trim().toUpperCase();
+      if (!code) return;
+      familyRef = await ensureFamilyDoc(code);
+      document.getElementById('gate').classList.add('hidden');
+      document.getElementById('dashboard').classList.remove('hidden');
+      listen();
+    });
+
+    document.getElementById('goodBtn').addEventListener('click', () => {
+      pushFeed(familyRef, "Amma checked in: doing well today.");
+      showConfirm("Sent to your family: \"I'm doing well today.\"");
+    });
+
+    document.getElementById('helpBtn').addEventListener('click', () => {
+      pushFeed(familyRef, "Amma flagged she needs something — coordinator notified.");
+      showConfirm("Sent to your family and coordinator — someone will call you shortly.");
+    });
+
+    function showConfirm(text) {
+      const el = document.getElementById('confirmMsg');
+      el.textContent = text;
+      el.classList.remove('hidden');
+    }
+
+    function listen() {
+      familyRef.onSnapshot((doc) => {
+        if (!doc.exists) return;
+        const data = doc.data();
+        document.getElementById('parentNameEl').textContent = data.parentName;
+        document.getElementById('caregiverAvatar').textContent = (data.caregiverName || '?').charAt(0);
+
+        const v = data.visit || {};
+        document.getElementById('caregiverLine').textContent = `${data.caregiverName || ''} is visiting today`;
+        document.getElementById('visitLine').textContent = `${v.time || ''} — ${v.task || ''}`;
+      });
+    }
+  </script>
+</body>
+</html>

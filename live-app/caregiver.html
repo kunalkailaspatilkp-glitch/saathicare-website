@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SaathiCare — Caregiver Check-in</title>
+<link rel="stylesheet" href="shared.css">
+</head>
+<body>
+
+  <div class="topbar">
+    <span class="brand">SaathiCare</span>
+    <span class="role-tag">Caregiver Check-in — Meena</span>
+  </div>
+
+  <div class="wrap">
+
+    <div id="gate" class="card gate">
+      <h2 style="margin:0;">Connect to your assignment</h2>
+      <p style="color:var(--ink-soft); font-size:14px; margin:0;">
+        Enter the family code given by your coordinator.
+      </p>
+      <input id="codeInput" type="text" placeholder="e.g. SAATHI2026" value="SAATHI2026">
+      <button class="btn" id="connectBtn">Connect</button>
+    </div>
+
+    <div id="dashboard" class="hidden">
+      <div class="card" style="display:flex; align-items:center; gap:12px;">
+        <div class="avatar" id="parentAvatar">?</div>
+        <div>
+          <div style="font-weight:700;" id="parentNameEl">—</div>
+          <div style="font-size:12.5px; color:var(--ink-faint);" id="parentLocEl"></div>
+        </div>
+      </div>
+
+      <div class="card" id="visitCard">
+        <div style="font-size:12px; font-weight:700; color:var(--ink-soft);">TODAY'S VISIT</div>
+        <div style="font-size:20px; font-weight:700; color:var(--teal-strong);" id="visitTimeTask">—</div>
+        <div id="statusRow" style="margin-top:8px;"><span class="status-badge" id="statusBadge">—</span></div>
+
+        <div id="stepArrive" style="margin-top:16px;">
+          <button class="btn" id="arriveBtn">📍 Mark arrived at home</button>
+        </div>
+
+        <div id="stepChecklist" class="hidden" style="margin-top:16px;">
+          <label class="checklist-item"><input type="checkbox" class="chk"> Task completed as scheduled</label>
+          <label class="checklist-item"><input type="checkbox" class="chk"> Family member is safe and comfortable</label>
+          <label class="checklist-item"><input type="checkbox" class="chk"> No concerns to escalate</label>
+          <div style="display:flex; align-items:center; gap:10px; margin-top:8px;">
+            <button class="btn-outline" id="captureBtn">📷 Capture visit photo</button>
+            <span id="photoTick" class="hidden">✓ Photo captured</span>
+          </div>
+          <textarea class="note-field" id="noteField" placeholder="Add a short note for the family..."></textarea>
+          <button class="btn" id="submitBtn" disabled style="margin-top:10px;">Submit visit report</button>
+        </div>
+
+        <div id="stepDone" class="hidden" style="margin-top:16px; background:var(--teal-soft); color:var(--teal-strong); padding:12px; border-radius:10px; font-weight:600; font-size:13.5px;">
+          ✓ Visit report submitted — synced live to the family's dashboard.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script>
+    let familyRef = null;
+    let photoTaken = false;
+
+    document.getElementById('connectBtn').addEventListener('click', async () => {
+      const code = document.getElementById('codeInput').value.trim().toUpperCase();
+      if (!code) return;
+      familyRef = await ensureFamilyDoc(code);
+      document.getElementById('gate').classList.add('hidden');
+      document.getElementById('dashboard').classList.remove('hidden');
+      listen();
+    });
+
+    document.getElementById('arriveBtn').addEventListener('click', () => {
+      document.getElementById('stepArrive').classList.add('hidden');
+      document.getElementById('stepChecklist').classList.remove('hidden');
+      pushFeed(familyRef, "Meena has arrived for today's visit.");
+    });
+
+    document.getElementById('captureBtn').addEventListener('click', () => {
+      photoTaken = true;
+      document.getElementById('photoTick').classList.remove('hidden');
+      checkSubmitEnabled();
+    });
+
+    document.querySelectorAll('.chk').forEach(chk => {
+      chk.addEventListener('change', checkSubmitEnabled);
+    });
+
+    function checkSubmitEnabled() {
+      const boxes = document.querySelectorAll('.chk');
+      const allChecked = Array.from(boxes).every(b => b.checked);
+      document.getElementById('submitBtn').disabled = !(allChecked && photoTaken);
+    }
+
+    document.getElementById('submitBtn').addEventListener('click', async () => {
+      const note = document.getElementById('noteField').value.trim() ||
+        'Visit completed. All tasks done, family member doing well.';
+
+      const snap = await familyRef.get();
+      const data = snap.data();
+      const visit = data.visit || {};
+      visit.status = 'completed';
+      visit.note = note;
+      visit.photo = true;
+
+      await familyRef.update({ visit });
+      await pushFeed(familyRef, `Visit completed — "${visit.task}" logged with photo and notes.`);
+
+      document.getElementById('stepChecklist').classList.add('hidden');
+      document.getElementById('stepDone').classList.remove('hidden');
+    });
+
+    function listen() {
+      familyRef.onSnapshot((doc) => {
+        if (!doc.exists) return;
+        const data = doc.data();
+
+        document.getElementById('parentNameEl').textContent = data.parentName;
+        document.getElementById('parentLocEl').textContent = data.location;
+        document.getElementById('parentAvatar').textContent = (data.parentName || '?').charAt(0);
+
+        const v = data.visit || {};
+        document.getElementById('visitTimeTask').textContent = `${v.time || ''} — ${v.task || ''}`;
+
+        const badge = document.getElementById('statusBadge');
+        if (v.status === 'completed') {
+          badge.textContent = 'Completed';
+          badge.className = 'status-badge completed';
+          document.getElementById('stepArrive').classList.add('hidden');
+          document.getElementById('stepChecklist').classList.add('hidden');
+          document.getElementById('stepDone').classList.remove('hidden');
+        } else {
+          badge.textContent = 'Upcoming';
+          badge.className = 'status-badge upcoming';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

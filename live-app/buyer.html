@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SaathiCare — Buyer Dashboard</title>
+<link rel="stylesheet" href="shared.css">
+</head>
+<body>
+
+  <div class="topbar">
+    <span class="brand">SaathiCare</span>
+    <span class="role-tag">Buyer Dashboard — Priya</span>
+  </div>
+
+  <div class="wrap">
+
+    <!-- Family code gate -->
+    <div id="gate" class="card gate">
+      <h2 style="margin:0;">Connect to your family</h2>
+      <p style="color:var(--ink-soft); font-size:14px; margin:0;">
+        Enter the family code shared with you (same code the caregiver and your parent use).
+      </p>
+      <input id="codeInput" type="text" placeholder="e.g. SAATHI2026" value="SAATHI2026">
+      <button class="btn" id="connectBtn">Connect</button>
+    </div>
+
+    <!-- Main dashboard (hidden until connected) -->
+    <div id="dashboard" class="hidden">
+      <div class="card" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+        <div>
+          <span class="connection-dot live"></span>
+          <strong id="parentNameEl">—</strong>
+          <div style="font-size:12.5px; color:var(--ink-soft);" id="parentLocEl"></div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:12px; color:var(--ink-faint);">Family code</div>
+          <div style="font-weight:700;" id="codeDisplay"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+          <div class="avatar" id="caregiverAvatar">?</div>
+          <div>
+            <div style="font-weight:700;" id="caregiverNameEl">—</div>
+            <div style="font-size:12.5px; color:var(--ink-faint);">Assigned caregiver</div>
+          </div>
+        </div>
+        <button class="btn-outline" id="adhocBtn" style="width:100%;">+ Request ad-hoc visit</button>
+      </div>
+
+      <div class="card">
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <div>
+            <div style="font-size:12px; font-weight:700; color:var(--ink-soft);">TODAY'S NEXT VISIT</div>
+            <div style="font-size:22px; font-weight:700; color:var(--teal-strong);" id="nextTimeEl">—</div>
+            <div style="font-size:14px; color:var(--ink-soft);" id="nextTaskEl">—</div>
+          </div>
+          <span class="status-badge" id="statusBadge">—</span>
+        </div>
+        <div id="visitNote" style="margin-top:12px; font-size:13.5px; color:var(--ink-soft); border-top:1px solid var(--line); padding-top:10px;"></div>
+      </div>
+
+      <div class="card">
+        <div style="font-size:13px; font-weight:700; color:var(--ink-soft); margin-bottom:8px;">Notifications</div>
+        <div id="feedList"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script>
+    let familyRef = null;
+
+    document.getElementById('connectBtn').addEventListener('click', async () => {
+      const code = document.getElementById('codeInput').value.trim().toUpperCase();
+      if (!code) return;
+      familyRef = await ensureFamilyDoc(code);
+      document.getElementById('gate').classList.add('hidden');
+      document.getElementById('dashboard').classList.remove('hidden');
+      document.getElementById('codeDisplay').textContent = code;
+      listen();
+    });
+
+    document.getElementById('adhocBtn').addEventListener('click', () => {
+      if (!familyRef) return;
+      pushFeed(familyRef, 'Priya requested an ad-hoc visit — coordinator will confirm within the hour.');
+      const btn = document.getElementById('adhocBtn');
+      btn.textContent = '✓ Request sent';
+      btn.disabled = true;
+    });
+
+    function listen() {
+      familyRef.onSnapshot((doc) => {
+        if (!doc.exists) return;
+        const data = doc.data();
+
+        document.getElementById('parentNameEl').textContent = data.parentName;
+        document.getElementById('parentLocEl').textContent = data.location;
+        document.getElementById('caregiverNameEl').textContent = data.caregiverName;
+        document.getElementById('caregiverAvatar').textContent = (data.caregiverName || '?').charAt(0);
+
+        const v = data.visit || {};
+        document.getElementById('nextTimeEl').textContent = v.status === 'completed' ? '—' : (v.time || '—');
+        document.getElementById('nextTaskEl').textContent = v.status === 'completed' ? 'No further visits today' : (v.task || '—');
+
+        const badge = document.getElementById('statusBadge');
+        if (v.status === 'completed') {
+          badge.textContent = 'Completed';
+          badge.className = 'status-badge completed';
+        } else {
+          badge.textContent = 'Upcoming';
+          badge.className = 'status-badge upcoming';
+        }
+
+        document.getElementById('visitNote').textContent =
+          v.note || (v.status === 'upcoming' ? 'Scheduled — caregiver will check in on arrival.' : '');
+
+        const feedEl = document.getElementById('feedList');
+        const feed = (data.feed || []).slice().reverse();
+        feedEl.innerHTML = feed.map(f => `
+          <div class="feed-item">
+            <div class="feed-dot"></div>
+            <div>
+              <div>${f.text}</div>
+              <div class="feed-time">${f.time}</div>
+            </div>
+          </div>
+        `).join('');
+      });
+    }
+  </script>
+</body>
+</html>

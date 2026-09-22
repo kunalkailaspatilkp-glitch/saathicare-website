@@ -64,15 +64,31 @@
       listen();
     });
 
-    document.getElementById('goodBtn').addEventListener('click', () => {
-      pushFeed(familyRef, "Amma checked in: doing well today.");
-      showConfirm("Sent to your family: \"I'm doing well today.\"");
-    });
+    document.getElementById('goodBtn').addEventListener('click', () => handleCheckin('good'));
+    document.getElementById('helpBtn').addEventListener('click', () => handleCheckin('help'));
 
-    document.getElementById('helpBtn').addEventListener('click', () => {
-      pushFeed(familyRef, "Amma flagged she needs something — coordinator notified.");
-      showConfirm("Sent to your family and coordinator — someone will call you shortly.");
-    });
+    async function handleCheckin(status) {
+      document.getElementById('goodBtn').disabled = true;
+      document.getElementById('helpBtn').disabled = true;
+      showConfirm('...');
+
+      const aiResult = await callAI({ action: 'ai_checkin', status: status });
+
+      let hindiText, englishText;
+      if (aiResult && aiResult.hindi && aiResult.english) {
+        hindiText = aiResult.hindi;
+        englishText = aiResult.english;
+      } else {
+        hindiText = status === 'good' ? "मैं आज ठीक हूँ।" : "मुझे थोड़ी मदद चाहिए।";
+        englishText = status === 'good' ? "Amma checked in: doing well today." : "Amma flagged she needs something.";
+      }
+
+      showConfirm(hindiText);
+      pushFeed(familyRef, englishText);
+
+      document.getElementById('goodBtn').disabled = false;
+      document.getElementById('helpBtn').disabled = false;
+    }
 
     function showConfirm(text) {
       const el = document.getElementById('confirmMsg');

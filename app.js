@@ -141,9 +141,28 @@ function initInteractiveDemo() {
   renderBuyerDemo();
 
   const adhocBtn = document.getElementById('demo-adhoc-btn');
-  if (adhocBtn) {
+  const adhocPanel = document.getElementById('demo-adhoc-panel');
+  const adhocService = document.getElementById('demo-adhoc-service');
+  const adhocError = document.getElementById('demo-adhoc-error');
+  const adhocConfirm = document.getElementById('demo-adhoc-confirm');
+
+  if (adhocBtn && adhocPanel) {
     adhocBtn.addEventListener('click', () => {
-      pushDemoFeed('Ad-hoc visit requested — coordinator will confirm within the hour.');
+      adhocBtn.classList.add('hidden');
+      adhocPanel.classList.remove('hidden');
+    });
+  }
+  if (adhocConfirm) {
+    adhocConfirm.addEventListener('click', () => {
+      const service = adhocService.value;
+      if (!service) {
+        adhocError.classList.remove('hidden');
+        return;
+      }
+      adhocError.classList.add('hidden');
+      pushDemoFeed(`Ad-hoc visit requested (${service}) — coordinator will confirm within the hour.`);
+      adhocPanel.classList.add('hidden');
+      adhocBtn.classList.remove('hidden');
       adhocBtn.textContent = '✓ Request sent to coordinator';
       adhocBtn.disabled = true;
       adhocBtn.classList.add('opacity-60');

@@ -101,14 +101,24 @@
     }
 
     document.getElementById('submitBtn').addEventListener('click', async () => {
-      const note = document.getElementById('noteField').value.trim() ||
-        'Visit completed. All tasks done, family member doing well.';
+      const rawNote = document.getElementById('noteField').value.trim();
+      const submitBtn = document.getElementById('submitBtn');
 
       const snap = await familyRef.get();
       const data = snap.data();
       const visit = data.visit || {};
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Polishing note with AI...';
+
+      let finalNote = rawNote || 'Visit completed. All tasks done, family member doing well.';
+      const aiResult = await callAI({ action: 'ai_note', rawNote: rawNote, visitTask: visit.task });
+      if (aiResult && aiResult.summary) {
+        finalNote = aiResult.summary;
+      }
+
       visit.status = 'completed';
-      visit.note = note;
+      visit.note = finalNote;
       visit.photo = true;
 
       await familyRef.update({ visit });

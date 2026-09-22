@@ -48,6 +48,17 @@
           </div>
         </div>
         <button class="btn-outline" id="adhocBtn" style="width:100%;">+ Request ad-hoc visit</button>
+        <div id="adhocPanel" class="hidden" style="margin-top:10px;">
+          <select id="adhocService" style="width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:var(--radius-sm); font-size:14px; margin-bottom:6px; background:var(--surface-2); color:var(--ink);">
+            <option value="">Select a service...</option>
+            <option value="Companionship visit">Companionship visit</option>
+            <option value="Doctor escort">Doctor escort</option>
+            <option value="Medication reminder">Medication reminder</option>
+            <option value="Errand support">Errand support</option>
+          </select>
+          <div id="adhocError" class="hidden" style="color:var(--coral); font-size:12.5px; margin-bottom:6px;">Please select a service first.</div>
+          <button class="btn" id="adhocConfirmBtn" style="width:100%;">Confirm request (₹399)</button>
+        </div>
       </div>
 
       <div class="card">
@@ -88,8 +99,24 @@
 
     document.getElementById('adhocBtn').addEventListener('click', () => {
       if (!familyRef) return;
-      pushFeed(familyRef, 'Priya requested an ad-hoc visit — coordinator will confirm within the hour.');
+      document.getElementById('adhocBtn').classList.add('hidden');
+      document.getElementById('adhocPanel').classList.remove('hidden');
+    });
+
+    document.getElementById('adhocConfirmBtn').addEventListener('click', () => {
+      const service = document.getElementById('adhocService').value;
+      const errorEl = document.getElementById('adhocError');
+      if (!service) {
+        errorEl.classList.remove('hidden');
+        return;
+      }
+      errorEl.classList.add('hidden');
+
+      pushFeed(familyRef, `Priya requested an ad-hoc visit (${service}) — coordinator will confirm within the hour.`);
+
+      document.getElementById('adhocPanel').classList.add('hidden');
       const btn = document.getElementById('adhocBtn');
+      btn.classList.remove('hidden');
       btn.textContent = '✓ Request sent';
       btn.disabled = true;
     });

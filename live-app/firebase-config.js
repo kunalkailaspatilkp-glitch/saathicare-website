@@ -60,3 +60,24 @@ function pushFeed(ref, text) {
     feed: firebase.firestore.FieldValue.arrayUnion({ text, time: nowTime() })
   });
 }
+
+/* ============================================================
+   Shared AI backend call — same Google Apps Script deployment
+   used by the marketing site's booking form (see index.html).
+   Replace this URL if you ever redeploy the Apps Script.
+   ============================================================ */
+const BACKEND_ENDPOINT = "https://script.google.com/macros/s/AKfycbyot400cc1O3wUYSxrWKUV9SaZCPZEdl-AqShLRWVCOaxDZ9WV5gm_mQWZZ9vKNU3Lk/exec";
+
+async function callAI(payload) {
+  try {
+    const res = await fetch(BACKEND_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload)
+    });
+    return await res.json();
+  } catch (err) {
+    console.error("AI call failed:", err);
+    return null;
+  }
+}
